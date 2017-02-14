@@ -7,7 +7,7 @@ title: Ramblings
 subtitle:
 description:
 author: Alex McNair
-language: en-GB
+language: default
 timezone: Europe/London
 
 # URL
@@ -68,4 +68,5 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: git@github.com:AMCN41R/blog.git
