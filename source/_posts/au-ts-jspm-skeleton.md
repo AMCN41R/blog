@@ -63,7 +63,7 @@ npm install --save-dev aurelia-framework aurelia-bootstrapper aurelia-pal-browse
 
 We should now have a config.js file and jspm_packages alongside our package.json and node_modules folder...
 
-![setup complete](./au-ts-jspm-skeleton/setup.PNG)
+![setup complete](/images/au-ts-jspm-skeleton/setup.PNG)
 
 
 ## Creating the app...
@@ -71,7 +71,7 @@ All of the code we write, will go into a folder caled *src*. We are going to cre
 
 Create the *src* folder in the project rot directory, and create 3 new files within it..
 
-![Creating source files](./au-ts-jspm-skeleton/src.PNG)
+![Creating source files](/images/au-ts-jspm-skeleton/src.PNG)
 
 ### main.ts
 ```typescript
@@ -120,7 +120,7 @@ export class App {
 ## Building the output...
 We will serve files from a directory called *dist*. This folder will contain the result of buildin/processing/transpiling the code we have written in the *src* folder. To do this, we wil use **gulp**.
 
-### tscongig.json
+### tsconfig.json
 The first thing we need to do is turn the typescript files we have written into javascript files. We use the typescript compiler to do this, with some options specific to our project - these options go into a file called *tsconfig.json*.
 
 Create the tsconfig.jsonn file in the prohect root and add the following...
@@ -186,7 +186,7 @@ gulp.task("build", ["build:ts", "build:html"]);
 
 Now run `gulp build` - you see that the dist/ folder has been created with our html templates and transpiled typescript files...
 
-![Our built files](./au-ts-jspm-skeleton/build.PNG)
+![Our built files](/images/au-ts-jspm-skeleton/build.PNG)
 
 
 ### Serving up...
