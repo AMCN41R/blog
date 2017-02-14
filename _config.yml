@@ -69,4 +69,4 @@ theme: landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:AMCN41R/blog.git
+  repo: https://github.com/AMCN41R/blog.git
