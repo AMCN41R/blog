@@ -8,8 +8,7 @@ There are a number of ways to create a new Aurelia app (the CLI, the skeleton pr
 
 
 ## Prerequisites
-Before getting started, make sure you have node an npm installed, and the following packages installd globaly
-
+Before getting started, make sure you have node and npm installed, and the following packages installed globally...
 ```
 npm install -g typescript
 npm install -g jspm
@@ -25,17 +24,15 @@ npm install -g lite-server
 We are going to use npm to manage development dependencies, and jspm to manage the the libraries our finished app will use.
 
 ### npm
-Create a new npm project with the follwing commandand accept the default settings...
+Create a new npm project with the following command and accept the default settings...
 ```
 npm init
 ```
 
-Then install our development dependencies..
+Then we install our development dependencies...
 ```
 npm install --save-dev typescript jspm lite-server gulp gulp-typescript @types/es6-shim
 ```
-
-At this point, our directory should now contain a package.json file and a node_modules folder.
 
 ### jspm
 
@@ -43,33 +40,36 @@ After that, create a new jspm project with...
 ```
 jspm init
 ```
-Accept all the defaults EXCEPT for *Which ES6 transpiler would you like to use, Babel, TypeScript or Traceur?* - make sure to choose TypeScript.
+Accept all the defaults **EXCEPT** for *Which ES6 transpiler would you like to use, Babel, TypeScript or Traceur?* - make sure to choose TypeScript.
 
 Then we can install the libraries we want to use to build our app...
-
 ```
 jspm install aurelia-framework aurelia-bootstrapper aurelia-pal-browser aurelia-polyfills
 ```
 
 ### aurelia typings
 At the time of writing (to the best of my knowledge), there is an issue with the typescript typings resolution for libraries that provide their own types (rather than through npm install @types/..) that you install via jspm. Aurelia is one such library - the typescript compiler cannot find the Aurelia type definitions if you install aurelia with jspm.
+Read more on stack overflow [here](http://stackoverflow.com/questions/39767330/how-to-properly-get-aurelias-typescript-type-definition-files-d-ts-after-ts)
 
 To get round this, we can also install the aurelia libraries as development dependencies with npm...
 ```
 npm install --save-dev aurelia-framework aurelia-bootstrapper aurelia-pal-browser aurelia-polyfills
 ```
-**Note**: This is only so that the typescript compiler can find the aurelia type efinitions, and won't actually be used from the node_modules folder.
- 
 
-We should now have a config.js file and jspm_packages alongside our package.json and node_modules folder...
+**Note**: This is only so that the typescript compiler can find the aurelia type definitions, and won't actually be used from the node_modules folder.
+ 
+We've now got everything we need to build our app. We should have a config.js file and jspm_packages alongside our package.json and node_modules folder...
 
 ![setup complete](/blog/images/au-ts-jspm-skeleton/setup.PNG)
 
 
 ## Creating the app...
-All of the code we write, will go into a folder caled *src*. We are going to create a typical aurelia configure function and a simple page to illustrate data binding.
+All of the code we write, will go into a folder caled *src*. We are going to create a class to bootstrap aurelia is the standard way, and a simple page to illustrate data binding.
 
 Create the *src* folder in the project rot directory, and create 3 new files within it..
+* main.ts 
+* app.ts 
+* app.html 
 
 ![Creating source files](/blog/images/au-ts-jspm-skeleton/src.PNG)
 
@@ -118,12 +118,12 @@ export class App {
 ```
 
 ## Building the output...
-We will serve files from a directory called *dist*. This folder will contain the result of buildin/processing/transpiling the code we have written in the *src* folder. To do this, we wil use **gulp**.
+We will serve files from a directory called *dist*. This folder will contain the result of building the code we have written in the *src* folder. To do this, we wil use **gulp**.
 
 ### tsconfig.json
 The first thing we need to do is turn the typescript files we have written into javascript files. We use the typescript compiler to do this, with some options specific to our project - these options go into a file called *tsconfig.json*.
 
-Create the tsconfig.jsonn file in the prohect root and add the following...
+Create the tsconfig.json file in the project root and add the following...
 ```
 {
     "compilerOptions": {
@@ -154,13 +154,11 @@ System.config({
     "npm:*": "jspm_packages/npm/*"
   },
   map: {
-      ...
-      ...
-      ...
-```  
+      // rest of file
+```
 
 ### gulp
-Add a new file, gulpfile.js, in the project root and add the follwing...
+Add a new file, gulpfile.js, in the project root and add the following...
 ```javascript
 const gulp = require("gulp");
 const ts = require("gulp-typescript");
@@ -184,16 +182,16 @@ gulp.task("build", ["build:ts", "build:html"]);
 
 ```
 
-Now run `gulp build` - you see that the dist/ folder has been created with our html templates and transpiled typescript files...
+Now, from the command line, run `gulp build` - this will create the dist/ folder with our html templates and transpiled typescript files...
 
 ![Our built files](/blog/images/au-ts-jspm-skeleton/build.PNG)
 
 
-### Serving up...
-Al that's left is to create the index.html and serve what we've done locally using lite-server.
+## Serving up...
+All that's left is to create the index.html then serve what we've done locally using lite-server.
 
-## index.html
-Create the folloing index.html in the project rot...
+### index.html
+Create the following index.html in the project rot...
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -216,7 +214,7 @@ Create the folloing index.html in the project rot...
 </html>
 ```
 
-## lite-server configuration
+### lite-server configuration
 Create a file caled bs-config.json in the project root with the following options...
 ```
 {
@@ -232,10 +230,12 @@ Create a file caled bs-config.json in the project root with the following option
 }
 ```
 
-## Run it...
-From the command line, run...
+### Run it...
+Then start the application by running the following command...
 ```
 lite-server
 ```
 
+## And the crowd goes wild!
+That's it! We made a basic aurelia app using jspm and systemjs, written in typescript.
 
