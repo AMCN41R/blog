@@ -2,6 +2,7 @@
   <div id="banner"></div>
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
+      <img src="/blog/css/images/me.png" style="margin-top:-55px;width: 100px;">
       <h1 id="logo-wrap">
         <a href="<%- url_for() %>" id="logo"><%= config.title %></a>
       </h1>
@@ -17,16 +18,21 @@
         <% for (var i in theme.menu){ %>
           <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
         <% } %>
+        <a href="https://github.com/amcn41r" target="_blank" class="main-nav-link">GitHub</a>
       </nav>
       <nav id="sub-nav">
         <% if (theme.rss){ %>
           <a id="nav-rss-link" class="nav-icon" href="<%- theme.rss %>" title="<%= __('rss_feed') %>"></a>
         <% } %>
-        <a id="nav-search-btn" class="nav-icon" title="<%= __('search') %>"></a>
+        <!--<a id="nav-search-btn" class="nav-icon" title="<%= __('search') %>"></a>-->
       </nav>
+      
+      <!--
       <div id="search-form-wrap">
         <%- search_form({button: '&#xF002;'}) %>
       </div>
+      -->
+
     </div>
   </div>
 </header>
