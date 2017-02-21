@@ -6,7 +6,7 @@
     "version": "3.2.2"
   },
   "scripts": {
-    "rebuild": "hexo clean && hexo generate && hexo server",
+    "build": "hexo clean && hexo generate && hexo server",
     "deploy": "hexo clean && rmdir .deploy_git /s /q && hexo deploy --generate"
   },
   "dependencies": {

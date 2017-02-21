@@ -71,7 +71,7 @@ Create the *src* folder in the project rot directory, and create 3 new files wit
 * app.ts 
 * app.html 
 
-![Creating source files](/blog/images/au-ts-jspm-skeleton/src.PNG)
+![creating source files](/blog/images/au-ts-jspm-skeleton/src.PNG)
 
 ### main.ts
 ```typescript
@@ -184,7 +184,7 @@ gulp.task("build", ["build:ts", "build:html"]);
 
 Now, from the command line, run `gulp build` - this will create the dist/ folder with our html templates and transpiled typescript files...
 
-![Our built files](/blog/images/au-ts-jspm-skeleton/build.PNG)
+![the build output](/blog/images/au-ts-jspm-skeleton/build.PNG)
 
 
 ## Serving up...
