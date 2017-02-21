@@ -49,7 +49,7 @@ jspm install aurelia-framework aurelia-bootstrapper aurelia-pal-browser aurelia-
 
 ### aurelia typings
 At the time of writing (to the best of my knowledge), there is an issue with the typescript typings resolution for libraries that provide their own types (rather than through npm install @types/..) that you install via jspm. Aurelia is one such library - the typescript compiler cannot find the Aurelia type definitions if you install aurelia with jspm.
-Read more on stack overflow [here](http://stackoverflow.com/questions/39767330/how-to-properly-get-aurelias-typescript-type-definition-files-d-ts-after-ts)
+[This](http://stackoverflow.com/questions/39767330/how-to-properly-get-aurelias-typescript-type-definition-files-d-ts-after-ts) stack overfow question has some more information.
 
 To get round this, we can also install the aurelia libraries as development dependencies with npm...
 ```
