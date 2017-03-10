@@ -66,7 +66,7 @@ We've now got everything we need to build our app. We should have a config.js fi
 ## Creating the app...
 All of the code we write, will go into a folder caled *src*. We are going to create a class to bootstrap aurelia is the standard way, and a simple page to illustrate data binding.
 
-Create the *src* folder in the project rot directory, and create 3 new files within it..
+Create the *src* folder in the project root directory, and create 3 new files within it..
 * main.ts 
 * app.ts 
 * app.html 
@@ -142,7 +142,7 @@ Create the tsconfig.json file in the project root and add the following...
 ```
 
 ### update config.js
-We can also updated the config.js file to tell systemjs to always start in the dist/ folder when looking for the modules we've written...
+We can also update the config.js file to tell systemjs to always start in the dist/ folder when looking for the modules we've written...
 ```
 System.config({
   baseURL: "/",
@@ -191,7 +191,7 @@ Now, from the command line, run `gulp build` - this will create the dist/ folder
 All that's left is to create the index.html then serve what we've done locally using lite-server.
 
 ### index.html
-Create the following index.html in the project rot...
+Create the following index.html in the project root...
 ```html
 <!DOCTYPE html>
 <html lang="en">
