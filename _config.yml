@@ -70,3 +70,6 @@ theme: landscape
 deploy:
   type: git
   repo: https://github.com/AMCN41R/blog.git
+
+# Disqus comments
+disqus_shortname: alexmcnair

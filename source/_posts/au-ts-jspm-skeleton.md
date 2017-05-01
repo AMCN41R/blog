@@ -239,3 +239,4 @@ lite-server
 ## And the crowd goes wild!
 That's it! We made a basic aurelia app using jspm and systemjs, written in typescript.
 
+You can find he source code [here](https://github.com/AMCN41R/blog-repos/tree/master/au-ts-jspm-skeleton).
