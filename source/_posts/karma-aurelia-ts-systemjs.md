@@ -19,7 +19,7 @@ As you'd expect, I found loads of information about unit testing javascript and 
 
 I was using a combination of Karma, Mocha and Chai, Typescript, SystemJS and Aurelia, and I struggled to find much information about this specific setup.
 
-I perservered and finally managed to get it to work, so wanted to write down what I did for anyone else who finds themselves in the same boat.
+I persevered and finally managed to get it to work, so wanted to write down what I did for anyone else who finds themselves in the same boat.
 
 
 ## Aurelia Skeleton Project
@@ -42,12 +42,12 @@ some useful karma plugins...
 npm install -- save-dev karma-systemjs karma-mocha karma-chai karma-phantomjs-launcher karma-mocha-reporter
 ```
 
-the relevent type definitions...
+the relevant type definitions...
 ```
 npm install --save-dev @types/karma @types/mocha @types/chai
 ```
 
-and install chai with jspm as a development dependency (to make it easier for systemjs to load it when running the tests)...
+and install chai with jspm as a development dependency (to make it easier for SystemJS to load it when running the tests)...
 ```
 jspm install --dev chai
 ```
@@ -61,7 +61,7 @@ Use the default settings **EXCEPT** the following...
 *Which testing framework do you want to use ?* - **Mocha**
 *Do you want to capture any browsers automatically ?* - **PhantomJS**
 
-Now that we have a `karma.conf.js` in the project root, we need to add configuration for systemjs, and tweak a couple of other options.
+Now that we have a `karma.conf.js` in the project root, we need to add configuration for SystemJS, and tweak a couple of other options.
 
 Open the `karma.conf.js` file and update the following...
 
@@ -81,7 +81,7 @@ files: [
 ```
 reporters: ['mocha'],
 ```
-* Add the following systemjs configuration...
+* Add the following SystemJS configuration...
 ```
 systemjs: {
     configFile: 'config.js',
@@ -113,7 +113,7 @@ systemjs: {
 ```
 
 ### calc.ts
-Let's add a really simple class that we can write tests for.
+Let's add a simple class that we can write tests for.
 
 Create `calc.ts` in the `src` folder and add the following...
 ```typescript
@@ -183,5 +183,5 @@ karma start
 ![karma test results](/blog/images/karma-aurelia-ts-systemjs/karma.png)
 
 
-## And thats it!
+## And that's it!
 You can find the finished source code [here](https://github.com/AMCN41R/blog-repos/tree/master/karma-aurelia-ts-systemjs).
