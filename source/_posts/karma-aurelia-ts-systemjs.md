@@ -1,5 +1,6 @@
 ---
 title: 'Setting up Karma with Aurelia, Typescript & SystemJS'
+photos: '/images/karma-aurelia-ts-systemjs/toolchain.png'
 tags:
   - aurelia
   - karma
