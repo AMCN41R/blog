@@ -1,7 +1,6 @@
 ---
 title: But I just need the salt?!
-tags: []
-photos: 
+tags: [agile, mvp, minimum viable product, iterative development, software delivery, customer centered design, extreme programming]
 date: 2017-05-14 14:12:28
 ---
 
@@ -19,21 +18,23 @@ The first thing that springs to mind, that I've seen and been guilty of many tim
 "Yeah, but we should make it validate other values too, in case we need that later on." 
 *"Oh yeah, and not just products either."* 
 "Of course! We'll definitely need to validate all the other things we haven't written yet." 
-*"This will save time in the long run!"*
+*"It'll save time in the long run!"*
 
 #### *Will it?*
 
-Before you know it, you end with some GenericValidatorRepositoryBaseFactoryResolver&lt;T> and loads of supporting classes and interfaces, when all you probably needed was one simple function. 
+Before you know it, you have some GenericValidatorRepositoryBaseFactoryResolver&lt;T> and loads of supporting classes and interfaces, when all you probably needed was one simple function. 
 
-It's an exaggeration to make the point, and I'm not saying that abstraction is a bad thing, far from it! But I think it is really important to find a balance and to keep emphasis on the needs of the customer.
+It's an exaggeration to make the point, and I'm not saying that abstraction is a bad thing, far from it! But I think it is really important to find a balance that keeps emphasis on the needs of the customer.
 
-For instance, in our example it might be that we never end up needing to validate any other type of object. We have delivered the requirement, but at what cost? Costs we might not necessarily think about. It probably took longer than the simple implementation, there will be an extra maintenance overhead due to the more complex code, and increased number of tests that now have to be kept up to date etc.
+For instance, in our example, it might be that we never end up needing to validate any other type of object. We have delivered the requirement, but at what cost? Costs we might not necessarily think about. It probably took longer than the simple implementation, there will be an extra maintenance overhead due to the more complex code, and increased number of tests that now have to be kept up to date etc.
+
+As a good friend once told me, *"It may be the nicest code you've ever seen, but if it never gets shipped it's useless!"*
+
+Of course, this isn't an excuse to hack out *any* old code as quickly as possible. We still have responsibilities as developers to adhere to good coding practices, otherwise we end up going too far the other way, and actually getting slower in the long run.
 
 The challenge is working out how to meet and deliver the requirement as efficiently as you can, but in a way that can easily be extended in the future - to borrow from Extreme Programming... 
 
 > *"Do the simplest thing that could possibly work."*
-
-As a good friend once told me, *"It may be the nicest code you've ever seen, but if it never gets shipped it's useless."*
 
 *On a side note, there is a really great video from MPJ on his channel *funfunfunction* about [the growth stages of a programmer](https://www.youtube.com/watch?v=2qYll837a_0&t=5s) that is relevant here, and well worth a watch!*
 
@@ -52,9 +53,9 @@ Or, in other words...
 
 The idea with creating an MVP is not only to speed up the learning process, but to also put emphasis on the needs of the customer.
 
-As I said, we don't just see this in development, and can apply the same thinking to requirements gathering and design. It's so easy to get carried away when designing new features, and sometimes lose sight of the actual requirement and immediate customer need.
+As I said, we don't just see this issue in development, and can apply the same thinking to requirements gathering and design. It's so easy to get carried away when designing new features, and sometimes lose sight of the actual requirement and immediate customer need.
 
-Back to the example in the comic...
+Extending the original example...
 *"We need a new feature to dispense salt..."* 
 "Ok, no problem, that shouldn't take too long. But what if it did all condiments?" 
 *"Yeah, great idea, but what about people with allergies?"* 
