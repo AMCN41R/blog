@@ -1,7 +1,7 @@
 ---
 title: But I just need the salt?!
 tags: [agile, mvp, minimum viable product, iterative development, software delivery, customer centered design, extreme programming]
-date: 2017-05-14 14:12:28
+date: 2017-05-19 14:12:28
 ---
 
 I recently came across [this xkcd comic](https://xkcd.com/974/) and absolutely loved it. It made me laugh because I could see myself, and so many others, in it.
