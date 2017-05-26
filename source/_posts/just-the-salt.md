@@ -39,7 +39,7 @@ The challenge is working out how to meet and deliver the requirement as efficien
 *On a side note, there is a really great video from MPJ on his channel *funfunfunction* about [the growth stages of a programmer](https://www.youtube.com/watch?v=2qYll837a_0&t=5s) that is relevant here, and well worth a watch!*
 
 
-## Minimal Viable Product
+## Minimum Viable Product
 Or, in other words...
 
 > *Deliver value quickly!*
