@@ -1,12 +1,13 @@
 ---
 title: Making things easier with a PowerShell profile
-tags: 
-    - PowerShell
-    - Workflow
-    - Developer
-    - Productivity
-    - Shell
-    - Scripting
+tags:
+  - PowerShell
+  - Workflow
+  - Developer
+  - Productivity
+  - Shell
+  - Scripting
+date: 2018-04-11 08:14:26
 ---
 
 PowerShell is my go-to terminal. I use it a lot, mainly for git commands, but for things like mongo, js tooling (gulp etc), the dotnet cli, among others. 
