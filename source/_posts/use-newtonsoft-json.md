@@ -1,6 +1,15 @@
 ---
-title: use-newtonsoft-json
+title: ASP.NET Core 3 & Newtonsoft.Json
+date: 2020-01-13 10:39:05
 tags:
+  - ASP.NET
+  - ASP.NET Core
+  - .NET Core
+  - dotnet
+  - dotnet core
+  - Newtonsoft
+  - Newtonsoft.Json
+  - Json
 ---
 
 .NET Core 3 is here and that means upgrade time!
