@@ -14,11 +14,11 @@ The first thing that springs to mind, that I've seen and been guilty of many tim
 
 ## Supreme Leader General Base Class
 
-*"Yo! We need to write something to validate that a product has a price. That should be pretty easy right?* 
-"Yeah, but we should make it validate other values too, in case we need that later on." 
-*"Oh yeah, and not just products either."* 
-"Of course! We'll definitely need to validate all the other things we haven't written yet." 
-*"It'll save time in the long run!"*
+*'Yo! We need to write something to validate that a product has a price. That should be pretty easy right?'* 
+'Yeah, but we should make it validate other values too, in case we need that later on.' 
+*'Oh yeah, and not just products either.'* 
+'Of course! We'll definitely need to validate all the other things we haven't written yet.' 
+*'It'll save time in the long run!'*
 
 #### *Will it?*
 
@@ -28,15 +28,15 @@ It's an exaggeration to make the point, and I'm not saying that abstraction is a
 
 For instance, in our example, it might be that we never end up needing to validate any other type of object. We have delivered the requirement, but at what cost? Costs we might not necessarily think about. It probably took longer than the simple implementation, there will be an extra maintenance overhead due to the more complex code, and increased number of tests that now have to be kept up to date etc.
 
-As a good friend once told me, *"It may be the nicest code you've ever seen, but if it never gets shipped it's useless!"*
+As a good friend once told me, *'It may be the nicest code you've ever seen, but if it never gets shipped it's useless!'*
 
 Of course, this isn't an excuse to hack out *any* old code as quickly as possible. We still have responsibilities as developers to adhere to good coding practices, otherwise we end up going too far the other way, and actually getting slower in the long run.
 
 The challenge is working out how to meet and deliver the requirement as efficiently as you can, but in a way that can easily be extended in the future - to borrow from Extreme Programming... 
 
-> *"Do the simplest thing that could possibly work."*
+> *'Do the simplest thing that could possibly work.'*
 
-*On a side note, there is a really great video from MPJ on his channel *funfunfunction* about [the growth stages of a programmer](https://www.youtube.com/watch?v=2qYll837a_0&t=5s) that is relevant here, and well worth a watch!*
+*On a side note, there is a really great video from MPJ on his channel funfunfunction about [the growth stages of a programmer](https://www.youtube.com/watch?v=2qYll837a_0&t=5s) that is relevant here, and well worth a watch!*
 
 
 ## Minimum Viable Product
@@ -56,10 +56,10 @@ The idea with creating an MVP is not only to speed up the learning process, but 
 As I said, we don't just see this issue in development, and can apply the same thinking to requirements gathering and design. It's so easy to get carried away when designing new features, and sometimes lose sight of the actual requirement and immediate customer need.
 
 Extending the original example...
-*"We need a new feature to dispense salt..."* 
-"Ok, no problem, that shouldn't take too long. But what if it did all condiments?" 
-*"Yeah, great idea, but what about people with allergies?"* 
-"Ooh good one! Let's make sure it can do track allergy information. Don't worry, it'll save time in the long run!"
+*'We need a new feature to dispense salt...'* 
+'Ok, no problem, that shouldn't take too long. But what if it did all condiments?' 
+*'Yeah, great idea, but what about people with allergies?'* 
+'Ooh good one! Let's make sure it can do track allergy information. Don't worry, it'll save time in the long run!'
 
 Now your poor client, whose immediate need is just to be able to dispense salt, has to wait months instead of weeks for something they might never need - or want!
 
