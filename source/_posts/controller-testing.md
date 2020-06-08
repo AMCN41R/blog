@@ -20,7 +20,7 @@ First, I'd like to (briefly) talk about contract testing.
 
 Contract testing is defined nicely [in this blog](https://pactflow.io/blog/what-is-contract-testing/) by the guys at [Pact Flow](https://pactflow.io/).
 
-> *"Contract testing is a methodology for ensuring that two separate systems (such as two microservices) are compatible with one other. It captures the interactions that are exchanged between each service, storing them in a contract, which can then be used to verify that both parties adhere to it."*
+> *Contract testing is a methodology for ensuring that two separate systems (such as two microservices) are compatible with one other. It captures the interactions that are exchanged between each service, storing them in a contract, which can then be used to verify that both parties adhere to it.*
 
 In my humble opinion, this is great strategy to employ when working on any large scale application or solution. Contract testing can give us confidence that our APIs do not break any upstream integrations or clients. As a result, we can move faster and [deliver value more quickly](https://amcn41r.github.io/blog/2017/05/19/just-the-salt/) and safely.
 
