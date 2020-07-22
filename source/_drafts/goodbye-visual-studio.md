@@ -1,19 +1,19 @@
 ---
 title: Goodbye Visual Studio?
 tags:
-    - Visual Studio
-    - Visual Studio Code
-    - Developer
-    - Productivity
-    - Workflow
-    - Microsoft
-    - C#
-    - CSharp
-    - .NET
-    - dotnet
+  - Visual Studio
+  - Visual Studio Code
+  - Developer
+  - Productivity
+  - Workflow
+  - Microsoft
+  - C#
+  - CSharp
+  - .NET
+  - dotnet
 ---
 
-As a .NET developer, I've used [Visual Studio]() my whole career. It has its moments, but it is undenyably a great tool.
+As a .NET developer, I've used [Visual Studio]() my whole career. It has its moments, but it is undeniably a great tool.
 
 As my career has progressed, so has technology, and with it, the frameworks and tooling.
 
