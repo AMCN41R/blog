@@ -6,7 +6,9 @@ tags:
   - webapps
   - staticwebapps
 photos: /images/azure-static-web-apps/header.jpg
+date: 2022-02-21 19:44:59
 ---
+
 
 So, I came across this blog the other day...
 

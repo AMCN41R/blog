@@ -9,8 +9,9 @@
     "build": "hexo clean && hexo generate",
     "serve": "npm run build && hexo server",
     "serve:all": "npm run build && hexo server --draft",
-    "deploy": "hexo clean && rmdir .deploy_git /s /q && hexo deploy --generate",
-    "create": "hexo new draft"
+    "deploy": "hexo clean && hexo deploy --generate",
+    "create": "hexo new draft",
+    "publish": "hexo publish"
   },
   "dependencies": {
     "hexo": "^6.0.0",
