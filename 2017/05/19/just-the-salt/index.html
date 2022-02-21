@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>But I just need the salt?! | Ramblings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="I recently came across this xkcd comic and absolutely loved it. It made me laugh because I could see myself, and so many others, in it.  It’s funny because it’s true, and it got me thinking… this is s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="But I just need the salt?!">
+<meta property="og:url" content="http://alex.mcnair.net/blog/2017/05/19/just-the-salt/index.html">
+<meta property="og:site_name" content="Ramblings">
+<meta property="og:description" content="I recently came across this xkcd comic and absolutely loved it. It made me laugh because I could see myself, and so many others, in it.  It’s funny because it’s true, and it got me thinking… this is s">
+<meta property="og:locale">
+<meta property="og:image" content="http://alex.mcnair.net/blog/blog/images/just-the-salt/the-general-problem.png">
+<meta property="article:published_time" content="2017-05-19T13:12:28.000Z">
+<meta property="article:modified_time" content="2022-02-14T21:45:03.235Z">
+<meta property="article:author" content="Alex McNair">
+<meta property="article:tag" content="agile">
+<meta property="article:tag" content="mvp">
+<meta property="article:tag" content="minimum viable product">
+<meta property="article:tag" content="iterative development">
+<meta property="article:tag" content="software delivery">
+<meta property="article:tag" content="customer centered design">
+<meta property="article:tag" content="extreme programming">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://alex.mcnair.net/blog/blog/images/just-the-salt/the-general-problem.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.0.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <img src="/blog/css/images/me.png" style="margin-top:-55px;width: 100px;">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Ramblings</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="/blog/">Home</a>
+        
+        <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a href="https://github.com/amcn41r" target="_blank" class="main-nav-link">GitHub</a>
+        <a href="http://www.alexmcnair.net/" target="_blank" class="main-nav-link">alexmcnair.net</a>
+      </nav>
+      <nav id="sub-nav">
+        
+        <!--<a id="nav-search-btn" class="nav-icon" title="Search"></a>-->
+      </nav>
+
+      <!--
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://alex.mcnair.net/blog"></form>
+      </div>
+      -->
+
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-just-the-salt" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2017/05/19/just-the-salt/" class="article-date">
+  <time datetime="2017-05-19T13:12:28.000Z" itemprop="datePublished">2017-05-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      But I just need the salt?!
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I recently came across <a target="_blank" rel="noopener" href="https://xkcd.com/974/">this xkcd comic</a> and absolutely loved it. It made me laugh because I could see myself, and so many others, in it.</p>
+<p><img src="/blog/blog/images/just-the-salt/the-general-problem.png" alt="the general problem"></p>
+<p>It’s funny because it’s true, and it got me thinking… this is something I’ve seen, not only during development, but through all stages of a project. It can be trivial, but it can also be something that slows a project, or even halts it completely.</p>
+<p>The first thing that springs to mind, that I’ve seen and been guilty of many times, is something like the following example…</p>
+<h2 id="Supreme-Leader-General-Base-Class"><a href="#Supreme-Leader-General-Base-Class" class="headerlink" title="Supreme Leader General Base Class"></a>Supreme Leader General Base Class</h2><p><em>‘Yo! We need to write something to validate that a product has a price. That should be pretty easy right?’</em><br>‘Yeah, but we should make it validate other values too, in case we need that later on.’<br><em>‘Oh yeah, and not just products either.’</em><br>‘Of course! We’ll definitely need to validate all the other things we haven’t written yet.’<br><em>‘It’ll save time in the long run!’</em></p>
+<h4 id="Will-it"><a href="#Will-it" class="headerlink" title="Will it?"></a><em>Will it?</em></h4><p>Before you know it, you have some GenericValidatorRepositoryBaseFactoryResolver&lt;T&gt; and loads of supporting classes and interfaces, when all you probably needed was one simple function. </p>
+<p>It’s an exaggeration to make the point, and I’m not saying that abstraction is a bad thing, far from it! But I think it is really important to find a balance that keeps emphasis on the needs of the customer.</p>
+<p>For instance, in our example, it might be that we never end up needing to validate any other type of object. We have delivered the requirement, but at what cost? Costs we might not necessarily think about. It probably took longer than the simple implementation, there will be an extra maintenance overhead due to the more complex code, and increased number of tests that now have to be kept up to date etc.</p>
+<p>As a good friend once told me, <em>‘It may be the nicest code you’ve ever seen, but if it never gets shipped it’s useless!’</em></p>
+<p>Of course, this isn’t an excuse to hack out <em>any</em> old code as quickly as possible. We still have responsibilities as developers to adhere to good coding practices, otherwise we end up going too far the other way, and actually getting slower in the long run.</p>
+<p>The challenge is working out how to meet and deliver the requirement as efficiently as you can, but in a way that can easily be extended in the future - to borrow from Extreme Programming… </p>
+<blockquote>
+<p><em>‘Do the simplest thing that could possibly work.’</em></p>
+</blockquote>
+<p><em>On a side note, there is a really great video from MPJ on his channel funfunfunction about <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=2qYll837a_0&amp;t=5s">the growth stages of a programmer</a> that is relevant here, and well worth a watch!</em></p>
+<h2 id="Minimum-Viable-Product"><a href="#Minimum-Viable-Product" class="headerlink" title="Minimum Viable Product"></a>Minimum Viable Product</h2><p>Or, in other words…</p>
+<blockquote>
+<p><em>Deliver value quickly!</em></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.techopedia.com/definition/27809/minimum-viable-product-mvp">Techopedia</a> explains a minimum viable product (MVP) as…</p>
+<p><em>… the most pared down version of a product that can still be released. An MVP has three key characteristics:</em></p>
+<ul>
+<li><em>It has enough value that people are willing to use it or buy it initially</em> </li>
+<li><em>It demonstrates enough future benefit to retain early adopters</em> </li>
+<li><em>It provides a feedback loop to guide future development</em></li>
+</ul>
+<p>The idea with creating an MVP is not only to speed up the learning process, but to also put emphasis on the needs of the customer.</p>
+<p>As I said, we don’t just see this issue in development, and can apply the same thinking to requirements gathering and design. It’s so easy to get carried away when designing new features, and sometimes lose sight of the actual requirement and immediate customer need.</p>
+<p>Extending the original example…<br><em>‘We need a new feature to dispense salt…’</em><br>‘Ok, no problem, that shouldn’t take too long. But what if it did all condiments?’<br><em>‘Yeah, great idea, but what about people with allergies?’</em><br>‘Ooh good one! Let’s make sure it can do track allergy information. Don’t worry, it’ll save time in the long run!’</p>
+<p>Now your poor client, whose immediate need is just to be able to dispense salt, has to wait months instead of weeks for something they might never need - or want!</p>
+<h2 id="So-what-do-we-do-about-it"><a href="#So-what-do-we-do-about-it" class="headerlink" title="So, what do we do about it?"></a>So, what do we do about it?</h2><p>This is something that can so easily crop up in many parts of a project’s lifecycle, and there is not a simple <em>‘just do this’</em> solution. However, I think this is a very important and apt analogy to have in our minds every time we start something new.</p>
+<p>As a software developer, or member of a project team, your goal should be to deliver value throughout the process. Start small and build iteratively!</p>
+<p>So, every time we sit down to write a piece of code, or design a new feature or a new set of requirements, simply ask yourself…</p>
+<blockquote>
+<p><em>Do they just need the salt?</em></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://alex.mcnair.net/blog/2017/05/19/just-the-salt/" data-id="ckzx48squ000s8hp479mvd9xw" class="article-share-link">Share</a>
+      
+        <a href="http://alex.mcnair.net/blog/2017/05/19/just-the-salt/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/agile/" rel="tag">agile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/customer-centered-design/" rel="tag">customer centered design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/extreme-programming/" rel="tag">extreme programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/iterative-development/" rel="tag">iterative development</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/minimum-viable-product/" rel="tag">minimum viable product</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/mvp/" rel="tag">mvp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/software-delivery/" rel="tag">software delivery</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2017/07/11/introducing-harness/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Introducing Harness, an integration test harness for MongoDb
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/04/29/karma-aurelia-ts-systemjs/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Setting up Karma with Aurelia, Typescript &amp; SystemJS</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Alex McNair<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+  <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+  <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+  <a href="https://github.com/amcn41r" target="_blank" class="mobile-nav-link"> GitHub</a>
+  <a href="http://www.alexmcnair.net/" target="_blank" class="mobile-nav-link">alexmcnair.net</a>
+</nav>
+
+    
+<script>
+  var disqus_shortname = 'alexmcnair';
+  
+  var disqus_url = 'http://alex.mcnair.net/blog/2017/05/19/just-the-salt/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

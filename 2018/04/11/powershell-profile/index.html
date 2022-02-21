@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Making things easier with a PowerShell profile | Ramblings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="PowerShell is my go-to terminal. I use it a lot, mainly for git commands, but for things like mongo, js tooling (gulp etc), the dotnet cli, among others.  Like similar tools, PowerShell allows you to">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Making things easier with a PowerShell profile">
+<meta property="og:url" content="http://alex.mcnair.net/blog/2018/04/11/powershell-profile/index.html">
+<meta property="og:site_name" content="Ramblings">
+<meta property="og:description" content="PowerShell is my go-to terminal. I use it a lot, mainly for git commands, but for things like mongo, js tooling (gulp etc), the dotnet cli, among others.  Like similar tools, PowerShell allows you to">
+<meta property="og:locale">
+<meta property="og:image" content="http://alex.mcnair.net/blog/blog/images/powershell-profile/profile-path.png">
+<meta property="og:image" content="http://alex.mcnair.net/blog/blog/images/powershell-profile/function-1.png">
+<meta property="og:image" content="http://alex.mcnair.net/blog/blog/images/powershell-profile/prompt-1.png">
+<meta property="og:image" content="http://alex.mcnair.net/blog/blog/images/powershell-profile/prompt-2.png">
+<meta property="article:published_time" content="2018-04-11T07:14:26.000Z">
+<meta property="article:modified_time" content="2022-02-14T21:45:03.235Z">
+<meta property="article:author" content="Alex McNair">
+<meta property="article:tag" content="Developer">
+<meta property="article:tag" content="Productivity">
+<meta property="article:tag" content="Workflow">
+<meta property="article:tag" content="PowerShell">
+<meta property="article:tag" content="Shell">
+<meta property="article:tag" content="Scripting">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://alex.mcnair.net/blog/blog/images/powershell-profile/profile-path.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.0.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <img src="/blog/css/images/me.png" style="margin-top:-55px;width: 100px;">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Ramblings</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="/blog/">Home</a>
+        
+        <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a href="https://github.com/amcn41r" target="_blank" class="main-nav-link">GitHub</a>
+        <a href="http://www.alexmcnair.net/" target="_blank" class="main-nav-link">alexmcnair.net</a>
+      </nav>
+      <nav id="sub-nav">
+        
+        <!--<a id="nav-search-btn" class="nav-icon" title="Search"></a>-->
+      </nav>
+
+      <!--
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://alex.mcnair.net/blog"></form>
+      </div>
+      -->
+
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-powershell-profile" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/04/11/powershell-profile/" class="article-date">
+  <time datetime="2018-04-11T07:14:26.000Z" itemprop="datePublished">2018-04-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Making things easier with a PowerShell profile
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>PowerShell is my go-to terminal. I use it a lot, mainly for git commands, but for things like mongo, js tooling (gulp etc), the dotnet cli, among others. </p>
+<p>Like similar tools, PowerShell allows you to create a custom profile that gets loaded each time you start a new session. This profile can be utilised for creating shortcuts, aliases and functions that make everyday tasks and commands quicker and easier. </p>
+<p>By default, each time PowerShell is launched, it will try and load a <code>.ps1</code> file called <code>Microsoft.PowerShell_profile.ps1</code> from <code>%USERDIR%\Documents\WindowsPowerShell\</code>.<br>You can see the expected profile path by typing <code>$PROFILE</code>…</p>
+<p><img src="/blog/blog/images/powershell-profile/profile-path.png" alt="PowerShell profile location"></p>
+<p>Unfortunately, this file does not exist by default, so you will have to create it. The easiest way to do that is…</p>
+<p>…create the directory if it does not exist:</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir <span class="variable">$env:USERPROFILE</span>\Documents\WindowsPowerShell</span><br></pre></td></tr></tbody></table></figure>
+
+<p>…and then create your profile with:</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">New-Item</span> <span class="variable">$PROFILE</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Once the file has been created, you can open it for editing…</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ii</span> <span class="variable">$PROFILE</span></span><br></pre></td></tr></tbody></table></figure>
+<p><em><code>ii</code> is an alias for the PowerShell command <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/invoke-item?view=powershell-5.1">Invoke-Item</a>.</em></p>
+<h3 id="Aliases"><a href="#Aliases" class="headerlink" title="Aliases"></a>Aliases</h3><p>Create aliases to commonly used commands or programs using the <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-5.1">Set-Alias</a> command.  For example, create an alias to launch notepad from the terminal by typing <code>np</code>…</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-Alias</span> np notepad.exe</span><br></pre></td></tr></tbody></table></figure>
+
+
+<h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><p>Alternatively, you can create a function to encapsulate more behaviour. </p>
+<p>This example creates a shortcut for listing globally installed npm packages…</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">npmGlobals</span><span class="params">()</span></span>{ npm <span class="built_in">ls</span> <span class="literal">-g</span> <span class="literal">--depth</span>=<span class="number">0</span> }</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/blog/blog/images/powershell-profile/function-1.png" alt="function example: npmGlobals"> </p>
+<h4 id="Some-simple-git-examples"><a href="#Some-simple-git-examples" class="headerlink" title="Some simple git examples"></a>Some simple git examples</h4><p>As I said before, I primarily use PowerShell for running git commands, so I’ve created some shortcuts for the git commands I use often:</p>
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Command</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gs</td>
+<td>git status</td>
+<td>function GS() { git status }</td>
+</tr>
+<tr>
+<td>gf</td>
+<td>git fetch –prune</td>
+<td>function GF() { git fetch –prune }</td>
+</tr>
+<tr>
+<td>gc</td>
+<td>git commit -m</td>
+<td>function GC() { git commit -m $args[0] }</td>
+</tr>
+</tbody></table>
+<h3 id="Modifying-the-prompt"><a href="#Modifying-the-prompt" class="headerlink" title="Modifying the prompt"></a>Modifying the prompt</h3><p>The default PowerShell prompt looks like this… </p>
+<p><img src="/blog/blog/images/powershell-profile/prompt-1.png" alt="the default prompt"> </p>
+<p>You can override this by including a <code>Prompt</code> function in your profile…</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Prompt</span></span> {</span><br><span class="line">    <span class="built_in">Write-Host</span> <span class="string">""</span></span><br><span class="line">    <span class="built_in">Write-Host</span> (<span class="string">"<span class="variable">$</span> "</span>) <span class="literal">-NoNewline</span> <span class="literal">-ForegroundColor</span> Gray</span><br><span class="line">    <span class="built_in">Write-Host</span> (<span class="variable">$</span>(<span class="built_in">Get-Location</span>)) <span class="literal">-NoNewline</span> <span class="literal">-ForegroundColor</span> Yellow</span><br><span class="line">    <span class="built_in">Write-Host</span> (<span class="string">"&gt;"</span>) <span class="literal">-NoNewline</span> <span class="literal">-ForegroundColor</span> Gray</span><br><span class="line">    <span class="keyword">return</span> <span class="string">" "</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/blog/blog/images/powershell-profile/prompt-2.png" alt="prompt example"> </p>
+<h3 id="Sharing-your-profile-across-multiple-machines"><a href="#Sharing-your-profile-across-multiple-machines" class="headerlink" title="Sharing your profile across multiple machines"></a>Sharing your profile across multiple machines</h3><p>I’m sure there are many ways to do this, but the way that works for me is using <a target="_blank" rel="noopener" href="https://onedrive.live.com/">OneDrive</a>. I have my personal profile stored in my OneDrive so that it is synced to each computer that I use. Then I just create the file explained in the steps above and simply ‘dot-source’ my actual profile…</p>
+<p>My Microsoft.PowerShell_profile.ps1</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. <span class="string">'C:\Users\Alex McNair\OneDrive\PowershellProfile.ps1'</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="My-Profile"><a href="#My-Profile" class="headerlink" title="My Profile"></a>My Profile</h3><p>You can check out my current profile on <a target="_blank" rel="noopener" href="https://gist.github.com/AMCN41R/8e7ba6d1c59f930fff957a45b73caff4">GitHub</a>.</p>
+<h3 id="Further-reading"><a href="#Further-reading" class="headerlink" title="Further reading"></a>Further reading</h3><p>These are just a few examples that I use to make daily tasks a bit easier. There are plenty of helpful blogs and resources online, including the following to articles:</p>
+<p><a target="_blank" rel="noopener" href="https://blogs.technet.microsoft.com/heyscriptingguy/2012/05/21/understanding-the-six-powershell-profiles/">Understanding the Six PowerShell Profiles</a><br><a target="_blank" rel="noopener" href="https://www.red-gate.com/simple-talk/sysadmin/powershell/persistent-powershell-the-powershell-profile/">Persistent PowerShell: The PowerShell Profile</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://alex.mcnair.net/blog/2018/04/11/powershell-profile/" data-id="ckzx48squ000v8hp4eprjcuem" class="article-share-link">Share</a>
+      
+        <a href="http://alex.mcnair.net/blog/2018/04/11/powershell-profile/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/PowerShell/" rel="tag">PowerShell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Productivity/" rel="tag">Productivity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Scripting/" rel="tag">Scripting</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Shell/" rel="tag">Shell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Workflow/" rel="tag">Workflow</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2020/01/13/use-newtonsoft-json/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ASP.NET Core 3 &amp; Newtonsoft.Json
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/07/11/introducing-harness/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Introducing Harness, an integration test harness for MongoDb</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Alex McNair<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+  <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+  <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+  <a href="https://github.com/amcn41r" target="_blank" class="mobile-nav-link"> GitHub</a>
+  <a href="http://www.alexmcnair.net/" target="_blank" class="mobile-nav-link">alexmcnair.net</a>
+</nav>
+
+    
+<script>
+  var disqus_shortname = 'alexmcnair';
+  
+  var disqus_url = 'http://alex.mcnair.net/blog/2018/04/11/powershell-profile/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

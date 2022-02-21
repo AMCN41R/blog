@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Unit Testing C# Controllers | Ramblings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="I’m a huge proponent of automated testing in all forms. There is always a balance to find between the effort required to write a test case vs the benefit of that test case, but with some help, you can">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unit Testing C# Controllers">
+<meta property="og:url" content="http://alex.mcnair.net/blog/2020/06/06/controller-testing/index.html">
+<meta property="og:site_name" content="Ramblings">
+<meta property="og:description" content="I’m a huge proponent of automated testing in all forms. There is always a balance to find between the effort required to write a test case vs the benefit of that test case, but with some help, you can">
+<meta property="og:locale">
+<meta property="og:image" content="http://alex.mcnair.net/images/custom-controller-asserts/header.jpg">
+<meta property="article:published_time" content="2020-06-06T12:18:33.000Z">
+<meta property="article:modified_time" content="2022-02-14T21:45:03.235Z">
+<meta property="article:author" content="Alex McNair">
+<meta property="article:tag" content="Unit Testing">
+<meta property="article:tag" content="XUnit">
+<meta property="article:tag" content="C# testing">
+<meta property="article:tag" content=".NET testing">
+<meta property="article:tag" content="dotnet testing">
+<meta property="article:tag" content="controller testing">
+<meta property="article:tag" content="contract testing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://alex.mcnair.net/images/custom-controller-asserts/header.jpg">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.0.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <img src="/blog/css/images/me.png" style="margin-top:-55px;width: 100px;">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Ramblings</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="/blog/">Home</a>
+        
+        <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a href="https://github.com/amcn41r" target="_blank" class="main-nav-link">GitHub</a>
+        <a href="http://www.alexmcnair.net/" target="_blank" class="main-nav-link">alexmcnair.net</a>
+      </nav>
+      <nav id="sub-nav">
+        
+        <!--<a id="nav-search-btn" class="nav-icon" title="Search"></a>-->
+      </nav>
+
+      <!--
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://alex.mcnair.net/blog"></form>
+      </div>
+      -->
+
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-controller-testing" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/06/06/controller-testing/" class="article-date">
+  <time datetime="2020-06-06T12:18:33.000Z" itemprop="datePublished">2020-06-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/images/custom-controller-asserts/header.jpg" rel="gallery_ckzx48sqt000q8hp4b3le4gsy">
+        <img src="/blog/images/custom-controller-asserts/header.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Unit Testing C# Controllers
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I’m a huge proponent of automated testing in all forms. There is always a balance to find between the effort required to write a test case vs the benefit <em>of</em> that test case, but with some help, you can reduce that effort.</p>
+<h2 id="Contract-Testing"><a href="#Contract-Testing" class="headerlink" title="Contract Testing"></a>Contract Testing</h2><p>First, I’d like to (briefly) talk about contract testing.</p>
+<p>Contract testing is defined nicely <a target="_blank" rel="noopener" href="https://pactflow.io/blog/what-is-contract-testing/">in this blog</a> by the guys at <a target="_blank" rel="noopener" href="https://pactflow.io/">Pact Flow</a>.</p>
+<blockquote>
+<p><em>Contract testing is a methodology for ensuring that two separate systems (such as two microservices) are compatible with one other. It captures the interactions that are exchanged between each service, storing them in a contract, which can then be used to verify that both parties adhere to it.</em></p>
+</blockquote>
+<p>In my humble opinion, this is great strategy to employ when working on any large scale application or solution. Contract testing can give us confidence that our APIs do not break any upstream integrations or clients. As a result, we can move faster and <a target="_blank" rel="noopener" href="https://amcn41r.github.io/blog/2017/05/19/just-the-salt/">deliver value more quickly</a> and safely.</p>
+<h2 id="A-quick-win"><a href="#A-quick-win" class="headerlink" title="A quick win?"></a>A quick win?</h2><p>If true contract testing seems a bit far off right now, an interim step might be to write unit tests against your controller methods. With the help of reflection, we can test things like the route and method attributes as well as the implementation.</p>
+<p>For example, this static method can be used to check that a controller method has the expected <code>HttpMethodAttribute</code> with the correct route template:</p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">MethodHasVerb</span>&lt;<span class="title">TController</span>, <span class="title">TVerbAttribute</span>&gt;(<span class="params"><span class="built_in">string</span> methodName, <span class="built_in">string</span> template</span>)</span></span><br><span class="line"><span class="function">    <span class="keyword">where</span> TController : ControllerBase</span></span><br><span class="line"><span class="function">    <span class="keyword">where</span> TVerbAttribute : HttpMethodAttribute</span></span><br><span class="line">{</span><br><span class="line">    <span class="keyword">var</span> method = <span class="keyword">typeof</span>(TController).GetMethod(methodName);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> attr = method?.GetCustomAttributes(<span class="keyword">typeof</span>(TVerbAttribute), <span class="literal">false</span>).ToList();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (attr == <span class="literal">null</span>)</span><br><span class="line">    {</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"No attributes found."</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// this methods checks that the required attribute is present only once</span></span><br><span class="line">    attr.AssertAttributeCount&lt;TVerbAttribute&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> verb = (HttpMethodAttribute) attr[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    Assert.Equal(template, verb.Template);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Assuming that the method above is a member of the class <code>AssertController</code>, it can be used like this…</p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// method under test in OrderController</span></span><br><span class="line">[<span class="meta">HttpGet(<span class="string">"{orderId}/products"</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> <span class="title">Task</span>&lt;<span class="title">IActionResult</span>&gt; <span class="title">GetProductsForOrder</span>(<span class="params">Guid orderId</span>)</span></span><br><span class="line">{</span><br><span class="line">    <span class="comment">// implementation</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// unit test (using XUnit)</span></span><br><span class="line">[<span class="meta">Fact</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetProductsForOrder_Method_HasCorrectVerbAttributeAndPath</span>()</span></span><br><span class="line">{</span><br><span class="line">    AssertController</span><br><span class="line">        .MethodHasVerb&lt;OrderController, HttpGetAttribute&gt;(</span><br><span class="line">            <span class="keyword">nameof</span>(OrderController.GetProductsForOrder),</span><br><span class="line">            <span class="string">"{orderId}/products"</span></span><br><span class="line">        );</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="How-easy-is-that"><a href="#How-easy-is-that" class="headerlink" title="How easy is that?!"></a>How easy is that?!</h4><p>With very little effort, we have an automated test that ensures that our original contract of Verb and Route does not change.</p>
+<h2 id="Going-a-little-further…"><a href="#Going-a-little-further…" class="headerlink" title="Going a little further…"></a>Going a little further…</h2><p>With a couple of extra helper methods, you can apply the same approach for methods without a route template, and to the controller itself…</p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">MethodHasVerb</span>&lt;<span class="title">TController</span>, <span class="title">TVerbAttribute</span>&gt;(<span class="params"><span class="built_in">string</span> methodName</span>)</span></span><br><span class="line"><span class="function">    <span class="keyword">where</span> TController : ControllerBase</span></span><br><span class="line"><span class="function">    <span class="keyword">where</span> TVerbAttribute : HttpMethodAttribute</span></span><br><span class="line">{</span><br><span class="line">    <span class="keyword">var</span> method = <span class="keyword">typeof</span>(TController).GetMethod(methodName);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> attr = method?.GetCustomAttributes(<span class="keyword">typeof</span>(TVerbAttribute), <span class="literal">false</span>).ToList();</span><br><span class="line"></span><br><span class="line">    attr.AssertAttributeCount&lt;TVerbAttribute&gt;();</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">HasRouteAttribute</span>&lt;<span class="title">TController</span>&gt;(<span class="params"><span class="built_in">string</span> route</span>)</span></span><br><span class="line"><span class="function">    <span class="keyword">where</span> TController : ControllerBase</span></span><br><span class="line">{</span><br><span class="line">    <span class="keyword">var</span> attr = <span class="keyword">typeof</span>(TController).GetCustomAttributes(<span class="keyword">typeof</span>(RouteAttribute), <span class="literal">false</span>).ToList();</span><br><span class="line"></span><br><span class="line">    attr.AssertAttributeCount&lt;RouteAttribute&gt;();</span><br><span class="line"></span><br><span class="line">    Xunit.Assert.Equal(route.ToLower(), ((RouteAttribute)attr[<span class="number">0</span>]).Template.ToLower());</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>I’ve created a <a target="_blank" rel="noopener" href="http://gist.github.com/AMCN41R/7331c282a60c46f1b9ee5a0fc0933d9a">gist on GitHub</a> with these methods and some examples.</p>
+<h2 id="Tests-Passed"><a href="#Tests-Passed" class="headerlink" title="Tests Passed"></a>Tests Passed</h2><p>Some might think this approach a little overboard, but I think for relatively little effort, you can get some peace of mind that the api you designed is still in place as your application grows.</p>
+<p>Of course, this does not guarantee the implementation doesn’t change, but that’s a topic for another day <span class="github-emoji"><span>😃</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f603.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://alex.mcnair.net/blog/2020/06/06/controller-testing/" data-id="ckzx48sqt000q8hp4b3le4gsy" class="article-share-link">Share</a>
+      
+        <a href="http://alex.mcnair.net/blog/2020/06/06/controller-testing/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/NET-testing/" rel="tag">.NET testing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/C-testing/" rel="tag">C# testing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Unit-Testing/" rel="tag">Unit Testing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/XUnit/" rel="tag">XUnit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/contract-testing/" rel="tag">contract testing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/controller-testing/" rel="tag">controller testing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/dotnet-testing/" rel="tag">dotnet testing</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2022/02/21/azure-static-web-apps/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Why are you not using Azure Static Web Apps?!
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2020/01/13/use-newtonsoft-json/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ASP.NET Core 3 &amp; Newtonsoft.Json</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Alex McNair<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+  <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+  <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+  <a href="https://github.com/amcn41r" target="_blank" class="mobile-nav-link"> GitHub</a>
+  <a href="http://www.alexmcnair.net/" target="_blank" class="mobile-nav-link">alexmcnair.net</a>
+</nav>
+
+    
+<script>
+  var disqus_shortname = 'alexmcnair';
+  
+  var disqus_url = 'http://alex.mcnair.net/blog/2020/06/06/controller-testing/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

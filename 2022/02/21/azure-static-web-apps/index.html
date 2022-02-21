@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Why are you not using Azure Static Web Apps?! | Ramblings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="So, I came across this blog the other day… Host Static Web Sites for Free in Azure Have a simple site that’s just html, css, javascript and other static content?  You can host it for free in Azure. No">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why are you not using Azure Static Web Apps?!">
+<meta property="og:url" content="http://alex.mcnair.net/blog/2022/02/21/azure-static-web-apps/index.html">
+<meta property="og:site_name" content="Ramblings">
+<meta property="og:description" content="So, I came across this blog the other day… Host Static Web Sites for Free in Azure Have a simple site that’s just html, css, javascript and other static content?  You can host it for free in Azure. No">
+<meta property="og:locale">
+<meta property="og:image" content="http://alex.mcnair.net/images/azure-static-web-apps/header.jpg">
+<meta property="article:published_time" content="2022-02-21T19:44:59.000Z">
+<meta property="article:modified_time" content="2022-02-21T19:44:59.131Z">
+<meta property="article:author" content="Alex McNair">
+<meta property="article:tag" content="azure">
+<meta property="article:tag" content="hosting">
+<meta property="article:tag" content="webapps">
+<meta property="article:tag" content="staticwebapps">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://alex.mcnair.net/images/azure-static-web-apps/header.jpg">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.0.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <img src="/blog/css/images/me.png" style="margin-top:-55px;width: 100px;">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Ramblings</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="/blog/">Home</a>
+        
+        <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a href="https://github.com/amcn41r" target="_blank" class="main-nav-link">GitHub</a>
+        <a href="http://www.alexmcnair.net/" target="_blank" class="main-nav-link">alexmcnair.net</a>
+      </nav>
+      <nav id="sub-nav">
+        
+        <!--<a id="nav-search-btn" class="nav-icon" title="Search"></a>-->
+      </nav>
+
+      <!--
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://alex.mcnair.net/blog"></form>
+      </div>
+      -->
+
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-azure-static-web-apps" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2022/02/21/azure-static-web-apps/" class="article-date">
+  <time datetime="2022-02-21T19:44:59.000Z" itemprop="datePublished">2022-02-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/images/azure-static-web-apps/header.jpg" rel="gallery_ckzx48sqt000o8hp46z651isk">
+        <img src="/blog/images/azure-static-web-apps/header.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Why are you not using Azure Static Web Apps?!
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>So, I came across this blog the other day…</p>
+<h3 id="Host-Static-Web-Sites-for-Free-in-Azure"><a href="#Host-Static-Web-Sites-for-Free-in-Azure" class="headerlink" title="Host Static Web Sites for Free in Azure"></a><a target="_blank" rel="noopener" href="https://techcommunity.microsoft.com/t5/healthcare-and-life-sciences/host-static-web-sites-for-free-in-azure/ba-p/3152200">Host Static Web Sites for Free in Azure</a></h3><blockquote>
+<p><em>Have a simple site that’s just html, css, javascript and other static content?  You can host it for free in Azure. Not only is it free to host it is much easier to maintain than most off the self content management systems.</em></p>
+</blockquote>
+<p>This sparked my interest, but then the kicker…</p>
+<blockquote>
+<p><em>What about SSL? As soon as you add a custom domain SWA will automatically get an SSL cert that matches your domain. It will renew as needed- you need to do nothing else!</em></p>
+</blockquote>
+<h4 id="Wait-what"><a href="#Wait-what" class="headerlink" title="Wait, what?"></a>Wait, what?</h4><p>I have a <a target="_blank" rel="noopener" href="https://www.alexmcnair.net/">personal website</a> that is a static site built with react (using <a target="_blank" rel="noopener" href="https://create-react-app.dev/">create-react-app</a>). Its stored on <a target="_blank" rel="noopener" href="https://github.com/AMCN41R/about-me">github</a>, no actions or any other CI/CD scripts. At the moment, I pay for hosting and have yet to sort an SSL certificate so I thought I’d check it out.</p>
+<h2 id="Wow"><a href="#Wow" class="headerlink" title="Wow!"></a>Wow!</h2><p>I was not prepared for how quick and easy it was! I mean, it took me literally 5 minutes.</p>
+<ol>
+<li>Sign into the <a target="_blank" rel="noopener" href="https://portal.azure.com/">Azure portal</a></li>
+<li>Go to <em><strong>Static Web Apps</strong></em></li>
+<li>Click <em><strong>Create</strong></em></li>
+</ol>
+<img src="/blog/images/azure-static-web-apps/create.png" style="margin:0;">
+
+<ol start="4">
+<li>Select a subscription, resource group and name for your static web app</li>
+<li>Select the free tier and most appropriate region</li>
+<li>Select Github and sign in</li>
+<li>Select your repo and branch</li>
+<li>Select your build details</li>
+</ol>
+<img src="/blog/images/azure-static-web-apps/github-config.png" style="margin:0;">
+
+<ol start="9">
+<li>Create it.</li>
+<li>And that’s basically it!</li>
+</ol>
+<p>As part of the creation process, it</p>
+<ul>
+<li>automatically created a github workflow that builds and deploys my app, including push and PR triggers</li>
+<li>committed this to the repo</li>
+<li>generated a custom hostname and SSL certificate</li>
+<li>deployed and hosted my app</li>
+</ul>
+<h3 id="It’s-just-so-simple"><a href="#It’s-just-so-simple" class="headerlink" title="It’s just so simple"></a>It’s just so simple</h3><p>I followed a few extra steps to <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/static-web-apps/custom-domain">set up my custom domain</a>, and now have my personal site hosted for free on azure!</p>
+<h3 id="Further-reading"><a href="#Further-reading" class="headerlink" title="Further reading"></a>Further reading</h3><p>There are other ways to do this (via VS Code for example), and other basic templates for different frameworks and static site generators. The docs are really helpful…</p>
+<p><a target="_blank" rel="noopener" href="https://azure.microsoft.com/en-us/services/app-service/static/">Azure Static Web Apps</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/static-web-apps/">Azure Static Web Apps Docs</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/static-web-apps/get-started-portal?tabs=vanilla-javascript">Create via the Portal</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/static-web-apps/custom-domain">Configure Custom Domains</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://alex.mcnair.net/blog/2022/02/21/azure-static-web-apps/" data-id="ckzx48sqt000o8hp46z651isk" class="article-share-link">Share</a>
+      
+        <a href="http://alex.mcnair.net/blog/2022/02/21/azure-static-web-apps/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/azure/" rel="tag">azure</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/hosting/" rel="tag">hosting</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/staticwebapps/" rel="tag">staticwebapps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/webapps/" rel="tag">webapps</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2020/06/06/controller-testing/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Unit Testing C# Controllers</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Alex McNair<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+  <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+  <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+  <a href="https://github.com/amcn41r" target="_blank" class="mobile-nav-link"> GitHub</a>
+  <a href="http://www.alexmcnair.net/" target="_blank" class="mobile-nav-link">alexmcnair.net</a>
+</nav>
+
+    
+<script>
+  var disqus_shortname = 'alexmcnair';
+  
+  var disqus_url = 'http://alex.mcnair.net/blog/2022/02/21/azure-static-web-apps/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

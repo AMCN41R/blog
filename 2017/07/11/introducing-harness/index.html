@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Introducing Harness, an integration test harness for MongoDb | Ramblings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="What is Harness?Harness is a free and open source .NET library designed to manage the state of a Mongo database during testing. At its core, it endeavours to aid unit and integration testing by puttin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introducing Harness, an integration test harness for MongoDb">
+<meta property="og:url" content="http://alex.mcnair.net/blog/2017/07/11/introducing-harness/index.html">
+<meta property="og:site_name" content="Ramblings">
+<meta property="og:description" content="What is Harness?Harness is a free and open source .NET library designed to manage the state of a Mongo database during testing. At its core, it endeavours to aid unit and integration testing by puttin">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-07-11T08:32:04.000Z">
+<meta property="article:modified_time" content="2022-02-14T21:45:03.235Z">
+<meta property="article:author" content="Alex McNair">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="Unit Testing">
+<meta property="article:tag" content="Harness">
+<meta property="article:tag" content="Mongo">
+<meta property="article:tag" content="MongoDb">
+<meta property="article:tag" content="Test">
+<meta property="article:tag" content="Testing">
+<meta property="article:tag" content="Unit Test">
+<meta property="article:tag" content="Integration Test">
+<meta property="article:tag" content="Integration Testing">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.0.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <img src="/blog/css/images/me.png" style="margin-top:-55px;width: 100px;">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Ramblings</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="/blog/">Home</a>
+        
+        <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a href="https://github.com/amcn41r" target="_blank" class="main-nav-link">GitHub</a>
+        <a href="http://www.alexmcnair.net/" target="_blank" class="main-nav-link">alexmcnair.net</a>
+      </nav>
+      <nav id="sub-nav">
+        
+        <!--<a id="nav-search-btn" class="nav-icon" title="Search"></a>-->
+      </nav>
+
+      <!--
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://alex.mcnair.net/blog"></form>
+      </div>
+      -->
+
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-introducing-harness" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2017/07/11/introducing-harness/" class="article-date">
+  <time datetime="2017-07-11T08:32:04.000Z" itemprop="datePublished">2017-07-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Introducing Harness, an integration test harness for MongoDb
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="What-is-Harness"><a href="#What-is-Harness" class="headerlink" title="What is Harness?"></a>What is Harness?</h2><p>Harness is a free and open source .NET library designed to manage the state of a Mongo database during testing.</p>
+<p>At its core, it endeavours to aid unit and integration testing by putting one or more Mongo databases in a known state at the beginning of a test, or suite of tests. The framework allows you to control your code’s dependency on a Mongo database, therefore increasing test consistency and repeat-ability.</p>
+<h2 id="Why-do-I-need-this"><a href="#Why-do-I-need-this" class="headerlink" title="Why do I need this?"></a>Why do I need this?</h2><p>If you want to perform integration tests on your Mongo repositories, it would be really helpful to have a known set of data in your target database so that you can write accurate and consistent tests. Harness allows you to do exactly that!</p>
+<h2 id="How-do-I-get-it"><a href="#How-do-I-get-it" class="headerlink" title="How do I get it?"></a>How do I get it?</h2><p>The easiest way to include it in a project is via <a target="_blank" rel="noopener" href="https://www.nuget.org/packages/Harness/">nuget</a>, and can be installed with…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Install-Package Harness</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="What’s-the-simplest-way-to-get-it-working"><a href="#What’s-the-simplest-way-to-get-it-working" class="headerlink" title="What’s the simplest way to get it working?"></a>What’s the simplest way to get it working?</h2><p>Do you like config files or fluent configuration in code? Either way, Harness has you covered. You can find examples of both <a target="_blank" rel="noopener" href="https://github.com/AMCN41R/Harness/blob/master/README.md">here</a>, or see below for a simple config file example…</p>
+<p>Once you have added Harness to you project, one way to get up and running is with 2 simple json files…</p>
+<h4 id="Settings-File"><a href="#Settings-File" class="headerlink" title="Settings File"></a>Settings File</h4><p>The settings file must have a <code>.json</code> extension. It is a json object that contains a <code>databases</code> property that is an array of <code>database</code> objects.</p>
+<h5 id="Example-settings-file-‘ExampleSettings-json’"><a href="#Example-settings-file-‘ExampleSettings-json’" class="headerlink" title="Example settings file, ‘ExampleSettings.json’"></a>Example settings file, ‘ExampleSettings.json’</h5><figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">{</span></span><br><span class="line">    <span class="attr">"databases"</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">{</span></span><br><span class="line">            <span class="attr">"databaseName"</span><span class="punctuation">:</span> <span class="string">"TestDb1"</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">"connectionString"</span><span class="punctuation">:</span> <span class="string">"mongodb://localhost:27017"</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">"collectionNameSuffix"</span><span class="punctuation">:</span> <span class="string">""</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">"dropFirst"</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">"collections"</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="punctuation">{</span></span><br><span class="line">                    <span class="attr">"collectionName"</span><span class="punctuation">:</span> <span class="string">"TestCollection1"</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">"dataFileLocation"</span><span class="punctuation">:</span> <span class="string">"Collection1.json"</span><span class="punctuation">,</span> <span class="comment">// this is the path to a data file described below</span></span><br><span class="line">                    <span class="attr">"dropFirst"</span><span class="punctuation">:</span> <span class="keyword">false</span></span><br><span class="line">                <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">{</span></span><br><span class="line">                    <span class="attr">"collectionName"</span><span class="punctuation">:</span> <span class="string">"TestCollection2"</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">"dataFileLocation"</span><span class="punctuation">:</span> <span class="string">"Collection2.json"</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">"dropFirst"</span><span class="punctuation">:</span> <span class="keyword">false</span></span><br><span class="line">                <span class="punctuation">}</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">}</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Data-File"><a href="#Data-File" class="headerlink" title="Data File"></a>Data File</h4><p>Test data files must have a .json extension and contain an array of json objects.</p>
+<h5 id="Example-data-file-‘Collection1-json’"><a href="#Example-data-file-‘Collection1-json’" class="headerlink" title="Example data file, ‘Collection1.json’"></a>Example data file, ‘Collection1.json’</h5><figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">{</span></span><br><span class="line">        <span class="attr">"_id"</span><span class="punctuation">:</span> <span class="punctuation">{</span> <span class="attr">"$oid"</span><span class="punctuation">:</span> <span class="string">"56a69c36d1894801d0ce3d05"</span> <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">"Col1b"</span><span class="punctuation">:</span> <span class="string">"Value1b"</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">"Col2b"</span><span class="punctuation">:</span> <span class="string">"Value2b"</span></span><br><span class="line">    <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">{</span></span><br><span class="line">        <span class="attr">"_id"</span><span class="punctuation">:</span> <span class="punctuation">{</span> <span class="attr">"$oid"</span><span class="punctuation">:</span> <span class="string">"56a69c36d1894801d0ce3d06"</span> <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">"Col1b"</span><span class="punctuation">:</span> <span class="string">"Value3b"</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">"Col2b"</span><span class="punctuation">:</span> <span class="string">"Value4b"</span></span><br><span class="line">    <span class="punctuation">}</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Once you have created the settings and data files, all you need to do is make your class of tests extend <code>HarnessBase</code>, and give it the <code>[HarnessConfig]</code> attribute with the path to your settings file…</p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Harness;</span><br><span class="line"></span><br><span class="line">[<span class="meta">HarnessConfig(ConfigFilePath = <span class="string">"path/to/settings.json"</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyMongoIntegrationTests</span> : <span class="title">HarnessBase</span> {</span><br><span class="line">    <span class="comment">// tests go here</span></span><br><span class="line">    ...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Are-there-more-examples"><a href="#Are-there-more-examples" class="headerlink" title="Are there more examples?"></a>Are there more examples?</h2><p>You can check out examples of how to get started with both the config files and fluent configuration, as well as several XUnit examples on the Harness <a target="_blank" rel="noopener" href="https://github.com/AMCN41R/harness">GitHub</a> page.</p>
+<h2 id="Contributing"><a href="#Contributing" class="headerlink" title="Contributing"></a>Contributing</h2><p>If you find any issues, or have any suggestions, feel free to <a target="_blank" rel="noopener" href="https://github.com/AMCN41R/Harness/issues">log an issue</a> or create a <a target="_blank" rel="noopener" href="https://github.com/AMCN41R/Harness/pulls">pull request</a>.</p>
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p><a target="_blank" rel="noopener" href="https://github.com/AMCN41R/Harness/blob/dev/LICENSE">MIT License</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://alex.mcnair.net/blog/2017/07/11/introducing-harness/" data-id="ckzx48sqt000r8hp4an60c3qk" class="article-share-link">Share</a>
+      
+        <a href="http://alex.mcnair.net/blog/2017/07/11/introducing-harness/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/C/" rel="tag">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Harness/" rel="tag">Harness</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Integration-Test/" rel="tag">Integration Test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Integration-Testing/" rel="tag">Integration Testing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Mongo/" rel="tag">Mongo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/MongoDb/" rel="tag">MongoDb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Test/" rel="tag">Test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Testing/" rel="tag">Testing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Unit-Test/" rel="tag">Unit Test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Unit-Testing/" rel="tag">Unit Testing</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2018/04/11/powershell-profile/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Making things easier with a PowerShell profile
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/05/19/just-the-salt/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">But I just need the salt?!</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Alex McNair<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+  <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+  <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+  <a href="https://github.com/amcn41r" target="_blank" class="mobile-nav-link"> GitHub</a>
+  <a href="http://www.alexmcnair.net/" target="_blank" class="mobile-nav-link">alexmcnair.net</a>
+</nav>
+
+    
+<script>
+  var disqus_shortname = 'alexmcnair';
+  
+  var disqus_url = 'http://alex.mcnair.net/blog/2017/07/11/introducing-harness/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

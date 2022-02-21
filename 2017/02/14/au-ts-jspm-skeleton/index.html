@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Creating an Aurelia app from scratch using typescript &amp; jspm | Ramblings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="There are a number of ways to create a new Aurelia app (the CLI, the skeleton projects etc), and plenty of demos on how to do it.  Having been through this process, I was keen to create my own skeleto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Creating an Aurelia app from scratch using typescript &amp; jspm">
+<meta property="og:url" content="http://alex.mcnair.net/blog/2017/02/14/au-ts-jspm-skeleton/index.html">
+<meta property="og:site_name" content="Ramblings">
+<meta property="og:description" content="There are a number of ways to create a new Aurelia app (the CLI, the skeleton projects etc), and plenty of demos on how to do it.  Having been through this process, I was keen to create my own skeleto">
+<meta property="og:locale">
+<meta property="og:image" content="http://alex.mcnair.net/blog/blog/images/au-ts-jspm-skeleton/setup.PNG">
+<meta property="og:image" content="http://alex.mcnair.net/blog/blog/images/au-ts-jspm-skeleton/src.PNG">
+<meta property="og:image" content="http://alex.mcnair.net/blog/blog/images/au-ts-jspm-skeleton/build.PNG">
+<meta property="article:published_time" content="2017-02-14T20:48:41.000Z">
+<meta property="article:modified_time" content="2022-02-14T21:45:03.234Z">
+<meta property="article:author" content="Alex McNair">
+<meta property="article:tag" content="aurelia">
+<meta property="article:tag" content="typescript">
+<meta property="article:tag" content="jspm">
+<meta property="article:tag" content="systemjs">
+<meta property="article:tag" content="setup">
+<meta property="article:tag" content="skeleton">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://alex.mcnair.net/blog/blog/images/au-ts-jspm-skeleton/setup.PNG">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.0.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <img src="/blog/css/images/me.png" style="margin-top:-55px;width: 100px;">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Ramblings</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="/blog/">Home</a>
+        
+        <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a href="https://github.com/amcn41r" target="_blank" class="main-nav-link">GitHub</a>
+        <a href="http://www.alexmcnair.net/" target="_blank" class="main-nav-link">alexmcnair.net</a>
+      </nav>
+      <nav id="sub-nav">
+        
+        <!--<a id="nav-search-btn" class="nav-icon" title="Search"></a>-->
+      </nav>
+
+      <!--
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://alex.mcnair.net/blog"></form>
+      </div>
+      -->
+
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-au-ts-jspm-skeleton" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2017/02/14/au-ts-jspm-skeleton/" class="article-date">
+  <time datetime="2017-02-14T20:48:41.000Z" itemprop="datePublished">2017-02-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Creating an Aurelia app from scratch using typescript &amp; jspm
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>There are a number of ways to create a new Aurelia app (the CLI, the skeleton projects etc), and plenty of demos on how to do it.  Having been through this process, I was keen to create my own skeleton application, specifically using typescript and jspm/systemjs, to help embed the things I’d learned.  Here’s what I did…</p>
+<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>Before getting started, make sure you have node and npm installed, and the following packages installed globally…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g typescript</span><br><span class="line">npm install -g jspm</span><br><span class="line">npm install -g gulp-cli</span><br></pre></td></tr></tbody></table></figure>
+
+<p>I also use lite-server to host apps for testing, you can install that globally too…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g lite-server</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Starting-with-an-empty-folder…"><a href="#Starting-with-an-empty-folder…" class="headerlink" title="Starting with an empty folder…"></a>Starting with an empty folder…</h2><p>We are going to use npm to manage development dependencies, and jspm to manage the the libraries our finished app will use.</p>
+<h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><p>Create a new npm project with the following command and accept the default settings…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Then we install our development dependencies…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev typescript jspm lite-server gulp gulp-typescript @types/es6-shim</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="jspm"><a href="#jspm" class="headerlink" title="jspm"></a>jspm</h3><p>After that, create a new jspm project with…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jspm init</span><br></pre></td></tr></tbody></table></figure>
+<p>Accept all the defaults <strong>EXCEPT</strong> for <em>Which ES6 transpiler would you like to use, Babel, TypeScript or Traceur?</em> - make sure to choose TypeScript.</p>
+<p>Then we can install the libraries we want to use to build our app…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jspm install aurelia-framework aurelia-bootstrapper aurelia-pal-browser aurelia-polyfills</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="aurelia-typings"><a href="#aurelia-typings" class="headerlink" title="aurelia typings"></a>aurelia typings</h3><p>At the time of writing (to the best of my knowledge), there is an issue with the typescript typings resolution for libraries that provide their own types (rather than through npm install @types/..) that you install via jspm. Aurelia is one such library - the typescript compiler cannot find the Aurelia type definitions if you install aurelia with jspm.<br><a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/39767330/how-to-properly-get-aurelias-typescript-type-definition-files-d-ts-after-ts">This</a> stack overfow question has some more information.</p>
+<p>To get round this, we can also install the aurelia libraries as development dependencies with npm…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev aurelia-framework aurelia-bootstrapper aurelia-pal-browser aurelia-polyfills</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>Note</strong>: This is only so that the typescript compiler can find the aurelia type definitions, and won’t actually be used from the node_modules folder.</p>
+<p>We’ve now got everything we need to build our app. We should have a config.js file and jspm_packages alongside our package.json and node_modules folder…</p>
+<p><img src="/blog/blog/images/au-ts-jspm-skeleton/setup.PNG" alt="setup complete"></p>
+<h2 id="Creating-the-app…"><a href="#Creating-the-app…" class="headerlink" title="Creating the app…"></a>Creating the app…</h2><p>All of the code we write, will go into a folder caled <em>src</em>. We are going to create a class to bootstrap aurelia is the standard way, and a simple page to illustrate data binding.</p>
+<p>Create the <em>src</em> folder in the project root directory, and create 3 new files within it..</p>
+<ul>
+<li>main.ts </li>
+<li>app.ts </li>
+<li>app.html</li>
+</ul>
+<p><img src="/blog/blog/images/au-ts-jspm-skeleton/src.PNG" alt="creating source files"></p>
+<h3 id="main-ts"><a href="#main-ts" class="headerlink" title="main.ts"></a>main.ts</h3><figure class="highlight typescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> { <span class="title class_">Aurelia</span> } <span class="keyword">from</span> <span class="string">"aurelia-framework"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">configure</span>(<span class="params">aurelia: Aurelia</span>) {</span><br><span class="line"></span><br><span class="line">    aurelia</span><br><span class="line">        .<span class="property">use</span></span><br><span class="line">        .<span class="title function_">standardConfiguration</span>()</span><br><span class="line">        .<span class="title function_">developmentLogging</span>();</span><br><span class="line"></span><br><span class="line">    aurelia.<span class="title function_">start</span>().<span class="title function_">then</span>(<span class="function"><span class="params">a</span> =&gt;</span> a.<span class="title function_">setRoot</span>());</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="app-ts"><a href="#app-ts" class="headerlink" title="app.ts"></a>app.ts</h3><figure class="highlight typescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">App</span> {</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>) {</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">welcomeMessage</span> = <span class="string">"Welcome to our Aurelia application"</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="attr">welcomeMessage</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="attr">inputText</span>: <span class="built_in">string</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="app-html"><a href="#app-html" class="headerlink" title="app.html"></a>app.html</h3><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>${welcomeMessage}<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">value.bind</span>=<span class="string">"inputText"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        ${inputText}</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Building-the-output…"><a href="#Building-the-output…" class="headerlink" title="Building the output…"></a>Building the output…</h2><p>We will serve files from a directory called <em>dist</em>. This folder will contain the result of building the code we have written in the <em>src</em> folder. To do this, we wil use <strong>gulp</strong>.</p>
+<h3 id="tsconfig-json"><a href="#tsconfig-json" class="headerlink" title="tsconfig.json"></a>tsconfig.json</h3><p>The first thing we need to do is turn the typescript files we have written into javascript files. We use the typescript compiler to do this, with some options specific to our project - these options go into a file called <em>tsconfig.json</em>.</p>
+<p>Create the tsconfig.json file in the project root and add the following…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    "compilerOptions": {</span><br><span class="line">        "module": "amd",</span><br><span class="line">        "moduleResolution": "node",</span><br><span class="line">        "experimentalDecorators": true,</span><br><span class="line">        "emitDecoratorMetadata": true,</span><br><span class="line">        "sourceMap": true,</span><br><span class="line">        "target": "es5",</span><br><span class="line">        "outDir": "dist/"</span><br><span class="line">    },</span><br><span class="line">    "include": [</span><br><span class="line">        "./src/**/*.ts"</span><br><span class="line">    ]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="update-config-js"><a href="#update-config-js" class="headerlink" title="update config.js"></a>update config.js</h3><p>We can also update the config.js file to tell systemjs to always start in the dist/ folder when looking for the modules we’ve written…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">System.config({</span><br><span class="line">  baseURL: "/",</span><br><span class="line">  defaultJSExtensions: true,</span><br><span class="line">  transpiler: "typescript",</span><br><span class="line">  paths: {</span><br><span class="line">    "*": "dist/*", // &lt;------------------------ ADD THIS LINE</span><br><span class="line">    "github:*": "jspm_packages/github/*",</span><br><span class="line">    "npm:*": "jspm_packages/npm/*"</span><br><span class="line">  },</span><br><span class="line">  map: {</span><br><span class="line">      // rest of file</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="gulp"><a href="#gulp" class="headerlink" title="gulp"></a>gulp</h3><p>Add a new file, gulpfile.js, in the project root and add the following…</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">"gulp"</span>);</span><br><span class="line"><span class="keyword">const</span> ts = <span class="built_in">require</span>(<span class="string">"gulp-typescript"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> tsProject = ts.<span class="title function_">createProject</span>(<span class="string">"tsconfig.json"</span>);</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">"build:ts"</span>, <span class="function">() =&gt;</span> {</span><br><span class="line">    tsProject</span><br><span class="line">        .<span class="title function_">src</span>()</span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">tsProject</span>())</span><br><span class="line">        .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">"dist/"</span>));</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">"build:html"</span>, <span class="function">() =&gt;</span> {</span><br><span class="line">    gulp</span><br><span class="line">        .<span class="title function_">src</span>(<span class="string">"src/**/*.html"</span>)</span><br><span class="line">        .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">"dist/"</span>));</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">"build"</span>, [<span class="string">"build:ts"</span>, <span class="string">"build:html"</span>]);</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Now, from the command line, run <code>gulp build</code> - this will create the dist/ folder with our html templates and transpiled typescript files…</p>
+<p><img src="/blog/blog/images/au-ts-jspm-skeleton/build.PNG" alt="the build output"></p>
+<h2 id="Serving-up…"><a href="#Serving-up…" class="headerlink" title="Serving up…"></a>Serving up…</h2><p>All that’s left is to create the index.html then serve what we’ve done locally using lite-server.</p>
+<h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><p>Create the following index.html in the project root…</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Aurelia App<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jspm_packages/system.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"config.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="title class_">System</span>.<span class="title function_">import</span>(<span class="string">"aurelia-bootstrapper"</span>);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">aurelia-app</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="lite-server-configuration"><a href="#lite-server-configuration" class="headerlink" title="lite-server configuration"></a>lite-server configuration</h3><p>Create a file caled bs-config.json in the project root with the following options…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    "port": 3000,</span><br><span class="line">    "files": ["./**/*.{html,htm,css,js}"],</span><br><span class="line">    "server": {</span><br><span class="line">        "baseDir": "./"</span><br><span class="line">    },</span><br><span class="line">    "exclude":[</span><br><span class="line">        "node_modules/",</span><br><span class="line">        "jspm_packages/"</span><br><span class="line">    ]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Run-it…"><a href="#Run-it…" class="headerlink" title="Run it…"></a>Run it…</h3><p>Then start the application by running the following command…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lite-server</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="And-the-crowd-goes-wild"><a href="#And-the-crowd-goes-wild" class="headerlink" title="And the crowd goes wild!"></a>And the crowd goes wild!</h2><p>That’s it! We made a basic aurelia app using jspm and systemjs, written in typescript.</p>
+<p>You can find he source code <a target="_blank" rel="noopener" href="https://github.com/AMCN41R/blog-repos/tree/master/au-ts-jspm-skeleton">here</a>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://alex.mcnair.net/blog/2017/02/14/au-ts-jspm-skeleton/" data-id="ckzx48sqs000n8hp42u97735c" class="article-share-link">Share</a>
+      
+        <a href="http://alex.mcnair.net/blog/2017/02/14/au-ts-jspm-skeleton/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/aurelia/" rel="tag">aurelia</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/jspm/" rel="tag">jspm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/setup/" rel="tag">setup</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/skeleton/" rel="tag">skeleton</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/systemjs/" rel="tag">systemjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/typescript/" rel="tag">typescript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2017/04/29/karma-aurelia-ts-systemjs/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Setting up Karma with Aurelia, Typescript &amp; SystemJS
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Alex McNair<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+  <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+  <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+  <a href="https://github.com/amcn41r" target="_blank" class="mobile-nav-link"> GitHub</a>
+  <a href="http://www.alexmcnair.net/" target="_blank" class="mobile-nav-link">alexmcnair.net</a>
+</nav>
+
+    
+<script>
+  var disqus_shortname = 'alexmcnair';
+  
+  var disqus_url = 'http://alex.mcnair.net/blog/2017/02/14/au-ts-jspm-skeleton/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

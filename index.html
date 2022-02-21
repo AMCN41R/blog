@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Ramblings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Ramblings">
+<meta property="og:url" content="http://alex.mcnair.net/blog/index.html">
+<meta property="og:site_name" content="Ramblings">
+<meta property="og:locale">
+<meta property="article:author" content="Alex McNair">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 6.0.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <img src="/blog/css/images/me.png" style="margin-top:-55px;width: 100px;">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Ramblings</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="/blog/">Home</a>
+        
+        <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+        <a href="https://github.com/amcn41r" target="_blank" class="main-nav-link">GitHub</a>
+        <a href="http://www.alexmcnair.net/" target="_blank" class="main-nav-link">alexmcnair.net</a>
+      </nav>
+      <nav id="sub-nav">
+        
+        <!--<a id="nav-search-btn" class="nav-icon" title="Search"></a>-->
+      </nav>
+
+      <!--
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://alex.mcnair.net/blog"></form>
+      </div>
+      -->
+
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-azure-static-web-apps" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2022/02/21/azure-static-web-apps/" class="article-date">
+  <time datetime="2022-02-21T19:44:59.000Z" itemprop="datePublished">2022-02-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/images/azure-static-web-apps/header.jpg" rel="gallery_ckzx48sqt000o8hp46z651isk">
+        <img src="/blog/images/azure-static-web-apps/header.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2022/02/21/azure-static-web-apps/">Why are you not using Azure Static Web Apps?!</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>So, I came across this blog the other day…</p>
+<h3 id="Host-Static-Web-Sites-for-Free-in-Azure"><a href="#Host-Static-Web-Sites-for-Free-in-Azure" class="headerlink" title="Host Static Web Sites for Free in Azure"></a><a target="_blank" rel="noopener" href="https://techcommunity.microsoft.com/t5/healthcare-and-life-sciences/host-static-web-sites-for-free-in-azure/ba-p/3152200">Host Static Web Sites for Free in Azure</a></h3><blockquote>
+<p><em>Have a simple site that’s just html, css, javascript and other static content?  You can host it for free in Azure. Not only is it free to host it is much easier to maintain than most off the self content management systems.</em></p>
+</blockquote>
+<p>This sparked my interest, but then the kicker…</p>
+<blockquote>
+<p><em>What about SSL? As soon as you add a custom domain SWA will automatically get an SSL cert that matches your domain. It will renew as needed- you need to do nothing else!</em></p>
+</blockquote>
+<h4 id="Wait-what"><a href="#Wait-what" class="headerlink" title="Wait, what?"></a>Wait, what?</h4><p>I have a <a target="_blank" rel="noopener" href="https://www.alexmcnair.net/">personal website</a> that is a static site built with react (using <a target="_blank" rel="noopener" href="https://create-react-app.dev/">create-react-app</a>). Its stored on <a target="_blank" rel="noopener" href="https://github.com/AMCN41R/about-me">github</a>, no actions or any other CI/CD scripts. At the moment, I pay for hosting and have yet to sort an SSL certificate so I thought I’d check it out.</p>
+<h2 id="Wow"><a href="#Wow" class="headerlink" title="Wow!"></a>Wow!</h2><p>I was not prepared for how quick and easy it was! I mean, it took me literally 5 minutes.</p>
+<ol>
+<li>Sign into the <a target="_blank" rel="noopener" href="https://portal.azure.com/">Azure portal</a></li>
+<li>Go to <em><strong>Static Web Apps</strong></em></li>
+<li>Click <em><strong>Create</strong></em></li>
+</ol>
+<img src="/blog/images/azure-static-web-apps/create.png" style="margin:0;">
+
+<ol start="4">
+<li>Select a subscription, resource group and name for your static web app</li>
+<li>Select the free tier and most appropriate region</li>
+<li>Select Github and sign in</li>
+<li>Select your repo and branch</li>
+<li>Select your build details</li>
+</ol>
+<img src="/blog/images/azure-static-web-apps/github-config.png" style="margin:0;">
+
+<ol start="9">
+<li>Create it.</li>
+<li>And that’s basically it!</li>
+</ol>
+<p>As part of the creation process, it</p>
+<ul>
+<li>automatically created a github workflow that builds and deploys my app, including push and PR triggers</li>
+<li>committed this to the repo</li>
+<li>generated a custom hostname and SSL certificate</li>
+<li>deployed and hosted my app</li>
+</ul>
+<h3 id="It’s-just-so-simple"><a href="#It’s-just-so-simple" class="headerlink" title="It’s just so simple"></a>It’s just so simple</h3><p>I followed a few extra steps to <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/static-web-apps/custom-domain">set up my custom domain</a>, and now have my personal site hosted for free on azure!</p>
+<h3 id="Further-reading"><a href="#Further-reading" class="headerlink" title="Further reading"></a>Further reading</h3><p>There are other ways to do this (via VS Code for example), and other basic templates for different frameworks and static site generators. The docs are really helpful…</p>
+<p><a target="_blank" rel="noopener" href="https://azure.microsoft.com/en-us/services/app-service/static/">Azure Static Web Apps</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/static-web-apps/">Azure Static Web Apps Docs</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/static-web-apps/get-started-portal?tabs=vanilla-javascript">Create via the Portal</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/azure/static-web-apps/custom-domain">Configure Custom Domains</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://alex.mcnair.net/blog/2022/02/21/azure-static-web-apps/" data-id="ckzx48sqt000o8hp46z651isk" class="article-share-link">Share</a>
+      
+        <a href="http://alex.mcnair.net/blog/2022/02/21/azure-static-web-apps/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/azure/" rel="tag">azure</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/hosting/" rel="tag">hosting</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/staticwebapps/" rel="tag">staticwebapps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/webapps/" rel="tag">webapps</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-controller-testing" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/06/06/controller-testing/" class="article-date">
+  <time datetime="2020-06-06T12:18:33.000Z" itemprop="datePublished">2020-06-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/images/custom-controller-asserts/header.jpg" rel="gallery_ckzx48sqt000q8hp4b3le4gsy">
+        <img src="/blog/images/custom-controller-asserts/header.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/06/06/controller-testing/">Unit Testing C# Controllers</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I’m a huge proponent of automated testing in all forms. There is always a balance to find between the effort required to write a test case vs the benefit <em>of</em> that test case, but with some help, you can reduce that effort.</p>
+<h2 id="Contract-Testing"><a href="#Contract-Testing" class="headerlink" title="Contract Testing"></a>Contract Testing</h2><p>First, I’d like to (briefly) talk about contract testing.</p>
+<p>Contract testing is defined nicely <a target="_blank" rel="noopener" href="https://pactflow.io/blog/what-is-contract-testing/">in this blog</a> by the guys at <a target="_blank" rel="noopener" href="https://pactflow.io/">Pact Flow</a>.</p>
+<blockquote>
+<p><em>Contract testing is a methodology for ensuring that two separate systems (such as two microservices) are compatible with one other. It captures the interactions that are exchanged between each service, storing them in a contract, which can then be used to verify that both parties adhere to it.</em></p>
+</blockquote>
+<p>In my humble opinion, this is great strategy to employ when working on any large scale application or solution. Contract testing can give us confidence that our APIs do not break any upstream integrations or clients. As a result, we can move faster and <a target="_blank" rel="noopener" href="https://amcn41r.github.io/blog/2017/05/19/just-the-salt/">deliver value more quickly</a> and safely.</p>
+<h2 id="A-quick-win"><a href="#A-quick-win" class="headerlink" title="A quick win?"></a>A quick win?</h2><p>If true contract testing seems a bit far off right now, an interim step might be to write unit tests against your controller methods. With the help of reflection, we can test things like the route and method attributes as well as the implementation.</p>
+<p>For example, this static method can be used to check that a controller method has the expected <code>HttpMethodAttribute</code> with the correct route template:</p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">MethodHasVerb</span>&lt;<span class="title">TController</span>, <span class="title">TVerbAttribute</span>&gt;(<span class="params"><span class="built_in">string</span> methodName, <span class="built_in">string</span> template</span>)</span></span><br><span class="line"><span class="function">    <span class="keyword">where</span> TController : ControllerBase</span></span><br><span class="line"><span class="function">    <span class="keyword">where</span> TVerbAttribute : HttpMethodAttribute</span></span><br><span class="line">{</span><br><span class="line">    <span class="keyword">var</span> method = <span class="keyword">typeof</span>(TController).GetMethod(methodName);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> attr = method?.GetCustomAttributes(<span class="keyword">typeof</span>(TVerbAttribute), <span class="literal">false</span>).ToList();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (attr == <span class="literal">null</span>)</span><br><span class="line">    {</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"No attributes found."</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// this methods checks that the required attribute is present only once</span></span><br><span class="line">    attr.AssertAttributeCount&lt;TVerbAttribute&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> verb = (HttpMethodAttribute) attr[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    Assert.Equal(template, verb.Template);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Assuming that the method above is a member of the class <code>AssertController</code>, it can be used like this…</p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// method under test in OrderController</span></span><br><span class="line">[<span class="meta">HttpGet(<span class="string">"{orderId}/products"</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> <span class="title">Task</span>&lt;<span class="title">IActionResult</span>&gt; <span class="title">GetProductsForOrder</span>(<span class="params">Guid orderId</span>)</span></span><br><span class="line">{</span><br><span class="line">    <span class="comment">// implementation</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// unit test (using XUnit)</span></span><br><span class="line">[<span class="meta">Fact</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetProductsForOrder_Method_HasCorrectVerbAttributeAndPath</span>()</span></span><br><span class="line">{</span><br><span class="line">    AssertController</span><br><span class="line">        .MethodHasVerb&lt;OrderController, HttpGetAttribute&gt;(</span><br><span class="line">            <span class="keyword">nameof</span>(OrderController.GetProductsForOrder),</span><br><span class="line">            <span class="string">"{orderId}/products"</span></span><br><span class="line">        );</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="How-easy-is-that"><a href="#How-easy-is-that" class="headerlink" title="How easy is that?!"></a>How easy is that?!</h4><p>With very little effort, we have an automated test that ensures that our original contract of Verb and Route does not change.</p>
+<h2 id="Going-a-little-further…"><a href="#Going-a-little-further…" class="headerlink" title="Going a little further…"></a>Going a little further…</h2><p>With a couple of extra helper methods, you can apply the same approach for methods without a route template, and to the controller itself…</p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">MethodHasVerb</span>&lt;<span class="title">TController</span>, <span class="title">TVerbAttribute</span>&gt;(<span class="params"><span class="built_in">string</span> methodName</span>)</span></span><br><span class="line"><span class="function">    <span class="keyword">where</span> TController : ControllerBase</span></span><br><span class="line"><span class="function">    <span class="keyword">where</span> TVerbAttribute : HttpMethodAttribute</span></span><br><span class="line">{</span><br><span class="line">    <span class="keyword">var</span> method = <span class="keyword">typeof</span>(TController).GetMethod(methodName);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> attr = method?.GetCustomAttributes(<span class="keyword">typeof</span>(TVerbAttribute), <span class="literal">false</span>).ToList();</span><br><span class="line"></span><br><span class="line">    attr.AssertAttributeCount&lt;TVerbAttribute&gt;();</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">HasRouteAttribute</span>&lt;<span class="title">TController</span>&gt;(<span class="params"><span class="built_in">string</span> route</span>)</span></span><br><span class="line"><span class="function">    <span class="keyword">where</span> TController : ControllerBase</span></span><br><span class="line">{</span><br><span class="line">    <span class="keyword">var</span> attr = <span class="keyword">typeof</span>(TController).GetCustomAttributes(<span class="keyword">typeof</span>(RouteAttribute), <span class="literal">false</span>).ToList();</span><br><span class="line"></span><br><span class="line">    attr.AssertAttributeCount&lt;RouteAttribute&gt;();</span><br><span class="line"></span><br><span class="line">    Xunit.Assert.Equal(route.ToLower(), ((RouteAttribute)attr[<span class="number">0</span>]).Template.ToLower());</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>I’ve created a <a target="_blank" rel="noopener" href="http://gist.github.com/AMCN41R/7331c282a60c46f1b9ee5a0fc0933d9a">gist on GitHub</a> with these methods and some examples.</p>
+<h2 id="Tests-Passed"><a href="#Tests-Passed" class="headerlink" title="Tests Passed"></a>Tests Passed</h2><p>Some might think this approach a little overboard, but I think for relatively little effort, you can get some peace of mind that the api you designed is still in place as your application grows.</p>
+<p>Of course, this does not guarantee the implementation doesn’t change, but that’s a topic for another day <span class="github-emoji"><span>😃</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f603.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://alex.mcnair.net/blog/2020/06/06/controller-testing/" data-id="ckzx48sqt000q8hp4b3le4gsy" class="article-share-link">Share</a>
+      
+        <a href="http://alex.mcnair.net/blog/2020/06/06/controller-testing/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/NET-testing/" rel="tag">.NET testing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/C-testing/" rel="tag">C# testing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Unit-Testing/" rel="tag">Unit Testing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/XUnit/" rel="tag">XUnit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/contract-testing/" rel="tag">contract testing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/controller-testing/" rel="tag">controller testing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/dotnet-testing/" rel="tag">dotnet testing</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-use-newtonsoft-json" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/01/13/use-newtonsoft-json/" class="article-date">
+  <time datetime="2020-01-13T10:39:05.000Z" itemprop="datePublished">2020-01-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/01/13/use-newtonsoft-json/">ASP.NET Core 3 &amp; Newtonsoft.Json</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>.NET Core 3 is here and that means upgrade time!</p>
+<p>It’s great news that Microsoft have added the <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/api/system.text.json?view=netcore-3.1">System.Text.Json</a> namespace so that we no longer have to reach for <code>Newtonsoft.Json</code> as the first thing we do after <em>File &gt; New Project</em>.</p>
+<p>However, if you don’t feel ready, or there are few quirks and edge cases that you find when upgrading, you can configure your application to use <code>Newtonsoft.Json</code> instead!</p>
+<h3 id="Using-Newtonsoft-Json"><a href="#Using-Newtonsoft-Json" class="headerlink" title="Using Newtonsoft.Json"></a>Using Newtonsoft.Json</h3><p>It’s really easy to set up. Simply, adding a package reference and then adding it to the service collection in your <code>Startup.cs</code> file…</p>
+<h4 id="Packagage-Reference"><a href="#Packagage-Reference" class="headerlink" title="Packagage Reference"></a>Packagage Reference</h4><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">PackageReference</span> <span class="attr">Include</span>=<span class="string">"Microsoft.AspNetCore.Mvc.NewtonsoftJson"</span> <span class="attr">Version</span>=<span class="string">"3.1.1"</span> /&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Startup-cs"><a href="#Startup-cs" class="headerlink" title="Startup.cs"></a>Startup.cs</h4><figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConfigureServices</span>(<span class="params">IServiceCollection services</span>)</span></span><br><span class="line">{</span><br><span class="line">    services</span><br><span class="line">      .AddMvc()</span><br><span class="line">      .AddNewtonsoftJson();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// OR</span></span><br><span class="line"></span><br><span class="line">    services</span><br><span class="line">        .AddControllers()</span><br><span class="line">        .AddNewtonsoftJson();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// OR</span></span><br><span class="line"></span><br><span class="line">    services</span><br><span class="line">        .AddControllersWithViews()</span><br><span class="line">        .AddNewtonsoftJson();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>You can also configure the serialization options…</p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConfigureServices</span>(<span class="params">IServiceCollection services</span>)</span></span><br><span class="line">{</span><br><span class="line">    services</span><br><span class="line">        .AddControllers()</span><br><span class="line">        .AddNewtonsoftJson(opts =&gt;</span><br><span class="line">        {</span><br><span class="line">            opts.SerializerSettings.ContractResolver =</span><br><span class="line">                <span class="keyword">new</span> Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();</span><br><span class="line"></span><br><span class="line">            opts.SerializerSettings.Converters.Add(</span><br><span class="line">                <span class="keyword">new</span> Newtonsoft.Json.Converters.StringEnumConverter());</span><br><span class="line">        });</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>That’s it! It’s really that simple.</p>
+<p>If you’re wanting to upgrade your existing applications, but are unsure of the side affects or edge cases of using the new <code>System.Text.Json</code> namespace, you can really easily configure your application to use the perhaps more familiar <code>Newtonsoft.Json</code> library.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://alex.mcnair.net/blog/2020/01/13/use-newtonsoft-json/" data-id="ckzx48sqv000x8hp47rimfesi" class="article-share-link">Share</a>
+      
+        <a href="http://alex.mcnair.net/blog/2020/01/13/use-newtonsoft-json/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/NET-Core/" rel="tag">.NET Core</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/ASP-NET/" rel="tag">ASP.NET</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Json/" rel="tag">Json</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Newtonsoft/" rel="tag">Newtonsoft</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Newtonsoft-Json/" rel="tag">Newtonsoft.Json</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/dotnet/" rel="tag">dotnet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/dotnet-core/" rel="tag">dotnet core</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-powershell-profile" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2018/04/11/powershell-profile/" class="article-date">
+  <time datetime="2018-04-11T07:14:26.000Z" itemprop="datePublished">2018-04-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/04/11/powershell-profile/">Making things easier with a PowerShell profile</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>PowerShell is my go-to terminal. I use it a lot, mainly for git commands, but for things like mongo, js tooling (gulp etc), the dotnet cli, among others. </p>
+<p>Like similar tools, PowerShell allows you to create a custom profile that gets loaded each time you start a new session. This profile can be utilised for creating shortcuts, aliases and functions that make everyday tasks and commands quicker and easier. </p>
+<p>By default, each time PowerShell is launched, it will try and load a <code>.ps1</code> file called <code>Microsoft.PowerShell_profile.ps1</code> from <code>%USERDIR%\Documents\WindowsPowerShell\</code>.<br>You can see the expected profile path by typing <code>$PROFILE</code>…</p>
+<p><img src="/blog/blog/images/powershell-profile/profile-path.png" alt="PowerShell profile location"></p>
+<p>Unfortunately, this file does not exist by default, so you will have to create it. The easiest way to do that is…</p>
+<p>…create the directory if it does not exist:</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir <span class="variable">$env:USERPROFILE</span>\Documents\WindowsPowerShell</span><br></pre></td></tr></tbody></table></figure>
+
+<p>…and then create your profile with:</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">New-Item</span> <span class="variable">$PROFILE</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Once the file has been created, you can open it for editing…</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ii</span> <span class="variable">$PROFILE</span></span><br></pre></td></tr></tbody></table></figure>
+<p><em><code>ii</code> is an alias for the PowerShell command <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/invoke-item?view=powershell-5.1">Invoke-Item</a>.</em></p>
+<h3 id="Aliases"><a href="#Aliases" class="headerlink" title="Aliases"></a>Aliases</h3><p>Create aliases to commonly used commands or programs using the <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-alias?view=powershell-5.1">Set-Alias</a> command.  For example, create an alias to launch notepad from the terminal by typing <code>np</code>…</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-Alias</span> np notepad.exe</span><br></pre></td></tr></tbody></table></figure>
+
+
+<h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><p>Alternatively, you can create a function to encapsulate more behaviour. </p>
+<p>This example creates a shortcut for listing globally installed npm packages…</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">npmGlobals</span><span class="params">()</span></span>{ npm <span class="built_in">ls</span> <span class="literal">-g</span> <span class="literal">--depth</span>=<span class="number">0</span> }</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/blog/blog/images/powershell-profile/function-1.png" alt="function example: npmGlobals"> </p>
+<h4 id="Some-simple-git-examples"><a href="#Some-simple-git-examples" class="headerlink" title="Some simple git examples"></a>Some simple git examples</h4><p>As I said before, I primarily use PowerShell for running git commands, so I’ve created some shortcuts for the git commands I use often:</p>
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Command</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gs</td>
+<td>git status</td>
+<td>function GS() { git status }</td>
+</tr>
+<tr>
+<td>gf</td>
+<td>git fetch –prune</td>
+<td>function GF() { git fetch –prune }</td>
+</tr>
+<tr>
+<td>gc</td>
+<td>git commit -m</td>
+<td>function GC() { git commit -m $args[0] }</td>
+</tr>
+</tbody></table>
+<h3 id="Modifying-the-prompt"><a href="#Modifying-the-prompt" class="headerlink" title="Modifying the prompt"></a>Modifying the prompt</h3><p>The default PowerShell prompt looks like this… </p>
+<p><img src="/blog/blog/images/powershell-profile/prompt-1.png" alt="the default prompt"> </p>
+<p>You can override this by including a <code>Prompt</code> function in your profile…</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Prompt</span></span> {</span><br><span class="line">    <span class="built_in">Write-Host</span> <span class="string">""</span></span><br><span class="line">    <span class="built_in">Write-Host</span> (<span class="string">"<span class="variable">$</span> "</span>) <span class="literal">-NoNewline</span> <span class="literal">-ForegroundColor</span> Gray</span><br><span class="line">    <span class="built_in">Write-Host</span> (<span class="variable">$</span>(<span class="built_in">Get-Location</span>)) <span class="literal">-NoNewline</span> <span class="literal">-ForegroundColor</span> Yellow</span><br><span class="line">    <span class="built_in">Write-Host</span> (<span class="string">"&gt;"</span>) <span class="literal">-NoNewline</span> <span class="literal">-ForegroundColor</span> Gray</span><br><span class="line">    <span class="keyword">return</span> <span class="string">" "</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="/blog/blog/images/powershell-profile/prompt-2.png" alt="prompt example"> </p>
+<h3 id="Sharing-your-profile-across-multiple-machines"><a href="#Sharing-your-profile-across-multiple-machines" class="headerlink" title="Sharing your profile across multiple machines"></a>Sharing your profile across multiple machines</h3><p>I’m sure there are many ways to do this, but the way that works for me is using <a target="_blank" rel="noopener" href="https://onedrive.live.com/">OneDrive</a>. I have my personal profile stored in my OneDrive so that it is synced to each computer that I use. Then I just create the file explained in the steps above and simply ‘dot-source’ my actual profile…</p>
+<p>My Microsoft.PowerShell_profile.ps1</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. <span class="string">'C:\Users\Alex McNair\OneDrive\PowershellProfile.ps1'</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="My-Profile"><a href="#My-Profile" class="headerlink" title="My Profile"></a>My Profile</h3><p>You can check out my current profile on <a target="_blank" rel="noopener" href="https://gist.github.com/AMCN41R/8e7ba6d1c59f930fff957a45b73caff4">GitHub</a>.</p>
+<h3 id="Further-reading"><a href="#Further-reading" class="headerlink" title="Further reading"></a>Further reading</h3><p>These are just a few examples that I use to make daily tasks a bit easier. There are plenty of helpful blogs and resources online, including the following to articles:</p>
+<p><a target="_blank" rel="noopener" href="https://blogs.technet.microsoft.com/heyscriptingguy/2012/05/21/understanding-the-six-powershell-profiles/">Understanding the Six PowerShell Profiles</a><br><a target="_blank" rel="noopener" href="https://www.red-gate.com/simple-talk/sysadmin/powershell/persistent-powershell-the-powershell-profile/">Persistent PowerShell: The PowerShell Profile</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://alex.mcnair.net/blog/2018/04/11/powershell-profile/" data-id="ckzx48squ000v8hp4eprjcuem" class="article-share-link">Share</a>
+      
+        <a href="http://alex.mcnair.net/blog/2018/04/11/powershell-profile/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Developer/" rel="tag">Developer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/PowerShell/" rel="tag">PowerShell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Productivity/" rel="tag">Productivity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Scripting/" rel="tag">Scripting</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Shell/" rel="tag">Shell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Workflow/" rel="tag">Workflow</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-introducing-harness" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2017/07/11/introducing-harness/" class="article-date">
+  <time datetime="2017-07-11T08:32:04.000Z" itemprop="datePublished">2017-07-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2017/07/11/introducing-harness/">Introducing Harness, an integration test harness for MongoDb</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="What-is-Harness"><a href="#What-is-Harness" class="headerlink" title="What is Harness?"></a>What is Harness?</h2><p>Harness is a free and open source .NET library designed to manage the state of a Mongo database during testing.</p>
+<p>At its core, it endeavours to aid unit and integration testing by putting one or more Mongo databases in a known state at the beginning of a test, or suite of tests. The framework allows you to control your code’s dependency on a Mongo database, therefore increasing test consistency and repeat-ability.</p>
+<h2 id="Why-do-I-need-this"><a href="#Why-do-I-need-this" class="headerlink" title="Why do I need this?"></a>Why do I need this?</h2><p>If you want to perform integration tests on your Mongo repositories, it would be really helpful to have a known set of data in your target database so that you can write accurate and consistent tests. Harness allows you to do exactly that!</p>
+<h2 id="How-do-I-get-it"><a href="#How-do-I-get-it" class="headerlink" title="How do I get it?"></a>How do I get it?</h2><p>The easiest way to include it in a project is via <a target="_blank" rel="noopener" href="https://www.nuget.org/packages/Harness/">nuget</a>, and can be installed with…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Install-Package Harness</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="What’s-the-simplest-way-to-get-it-working"><a href="#What’s-the-simplest-way-to-get-it-working" class="headerlink" title="What’s the simplest way to get it working?"></a>What’s the simplest way to get it working?</h2><p>Do you like config files or fluent configuration in code? Either way, Harness has you covered. You can find examples of both <a target="_blank" rel="noopener" href="https://github.com/AMCN41R/Harness/blob/master/README.md">here</a>, or see below for a simple config file example…</p>
+<p>Once you have added Harness to you project, one way to get up and running is with 2 simple json files…</p>
+<h4 id="Settings-File"><a href="#Settings-File" class="headerlink" title="Settings File"></a>Settings File</h4><p>The settings file must have a <code>.json</code> extension. It is a json object that contains a <code>databases</code> property that is an array of <code>database</code> objects.</p>
+<h5 id="Example-settings-file-‘ExampleSettings-json’"><a href="#Example-settings-file-‘ExampleSettings-json’" class="headerlink" title="Example settings file, ‘ExampleSettings.json’"></a>Example settings file, ‘ExampleSettings.json’</h5><figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">{</span></span><br><span class="line">    <span class="attr">"databases"</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">{</span></span><br><span class="line">            <span class="attr">"databaseName"</span><span class="punctuation">:</span> <span class="string">"TestDb1"</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">"connectionString"</span><span class="punctuation">:</span> <span class="string">"mongodb://localhost:27017"</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">"collectionNameSuffix"</span><span class="punctuation">:</span> <span class="string">""</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">"dropFirst"</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">"collections"</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="punctuation">{</span></span><br><span class="line">                    <span class="attr">"collectionName"</span><span class="punctuation">:</span> <span class="string">"TestCollection1"</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">"dataFileLocation"</span><span class="punctuation">:</span> <span class="string">"Collection1.json"</span><span class="punctuation">,</span> <span class="comment">// this is the path to a data file described below</span></span><br><span class="line">                    <span class="attr">"dropFirst"</span><span class="punctuation">:</span> <span class="keyword">false</span></span><br><span class="line">                <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">                <span class="punctuation">{</span></span><br><span class="line">                    <span class="attr">"collectionName"</span><span class="punctuation">:</span> <span class="string">"TestCollection2"</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">"dataFileLocation"</span><span class="punctuation">:</span> <span class="string">"Collection2.json"</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">"dropFirst"</span><span class="punctuation">:</span> <span class="keyword">false</span></span><br><span class="line">                <span class="punctuation">}</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">}</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Data-File"><a href="#Data-File" class="headerlink" title="Data File"></a>Data File</h4><p>Test data files must have a .json extension and contain an array of json objects.</p>
+<h5 id="Example-data-file-‘Collection1-json’"><a href="#Example-data-file-‘Collection1-json’" class="headerlink" title="Example data file, ‘Collection1.json’"></a>Example data file, ‘Collection1.json’</h5><figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">{</span></span><br><span class="line">        <span class="attr">"_id"</span><span class="punctuation">:</span> <span class="punctuation">{</span> <span class="attr">"$oid"</span><span class="punctuation">:</span> <span class="string">"56a69c36d1894801d0ce3d05"</span> <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">"Col1b"</span><span class="punctuation">:</span> <span class="string">"Value1b"</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">"Col2b"</span><span class="punctuation">:</span> <span class="string">"Value2b"</span></span><br><span class="line">    <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">{</span></span><br><span class="line">        <span class="attr">"_id"</span><span class="punctuation">:</span> <span class="punctuation">{</span> <span class="attr">"$oid"</span><span class="punctuation">:</span> <span class="string">"56a69c36d1894801d0ce3d06"</span> <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">"Col1b"</span><span class="punctuation">:</span> <span class="string">"Value3b"</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">"Col2b"</span><span class="punctuation">:</span> <span class="string">"Value4b"</span></span><br><span class="line">    <span class="punctuation">}</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Once you have created the settings and data files, all you need to do is make your class of tests extend <code>HarnessBase</code>, and give it the <code>[HarnessConfig]</code> attribute with the path to your settings file…</p>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Harness;</span><br><span class="line"></span><br><span class="line">[<span class="meta">HarnessConfig(ConfigFilePath = <span class="string">"path/to/settings.json"</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyMongoIntegrationTests</span> : <span class="title">HarnessBase</span> {</span><br><span class="line">    <span class="comment">// tests go here</span></span><br><span class="line">    ...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Are-there-more-examples"><a href="#Are-there-more-examples" class="headerlink" title="Are there more examples?"></a>Are there more examples?</h2><p>You can check out examples of how to get started with both the config files and fluent configuration, as well as several XUnit examples on the Harness <a target="_blank" rel="noopener" href="https://github.com/AMCN41R/harness">GitHub</a> page.</p>
+<h2 id="Contributing"><a href="#Contributing" class="headerlink" title="Contributing"></a>Contributing</h2><p>If you find any issues, or have any suggestions, feel free to <a target="_blank" rel="noopener" href="https://github.com/AMCN41R/Harness/issues">log an issue</a> or create a <a target="_blank" rel="noopener" href="https://github.com/AMCN41R/Harness/pulls">pull request</a>.</p>
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p><a target="_blank" rel="noopener" href="https://github.com/AMCN41R/Harness/blob/dev/LICENSE">MIT License</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://alex.mcnair.net/blog/2017/07/11/introducing-harness/" data-id="ckzx48sqt000r8hp4an60c3qk" class="article-share-link">Share</a>
+      
+        <a href="http://alex.mcnair.net/blog/2017/07/11/introducing-harness/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/C/" rel="tag">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Harness/" rel="tag">Harness</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Integration-Test/" rel="tag">Integration Test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Integration-Testing/" rel="tag">Integration Testing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Mongo/" rel="tag">Mongo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/MongoDb/" rel="tag">MongoDb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Test/" rel="tag">Test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Testing/" rel="tag">Testing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Unit-Test/" rel="tag">Unit Test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Unit-Testing/" rel="tag">Unit Testing</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-just-the-salt" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2017/05/19/just-the-salt/" class="article-date">
+  <time datetime="2017-05-19T13:12:28.000Z" itemprop="datePublished">2017-05-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2017/05/19/just-the-salt/">But I just need the salt?!</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I recently came across <a target="_blank" rel="noopener" href="https://xkcd.com/974/">this xkcd comic</a> and absolutely loved it. It made me laugh because I could see myself, and so many others, in it.</p>
+<p><img src="/blog/blog/images/just-the-salt/the-general-problem.png" alt="the general problem"></p>
+<p>It’s funny because it’s true, and it got me thinking… this is something I’ve seen, not only during development, but through all stages of a project. It can be trivial, but it can also be something that slows a project, or even halts it completely.</p>
+<p>The first thing that springs to mind, that I’ve seen and been guilty of many times, is something like the following example…</p>
+<h2 id="Supreme-Leader-General-Base-Class"><a href="#Supreme-Leader-General-Base-Class" class="headerlink" title="Supreme Leader General Base Class"></a>Supreme Leader General Base Class</h2><p><em>‘Yo! We need to write something to validate that a product has a price. That should be pretty easy right?’</em><br>‘Yeah, but we should make it validate other values too, in case we need that later on.’<br><em>‘Oh yeah, and not just products either.’</em><br>‘Of course! We’ll definitely need to validate all the other things we haven’t written yet.’<br><em>‘It’ll save time in the long run!’</em></p>
+<h4 id="Will-it"><a href="#Will-it" class="headerlink" title="Will it?"></a><em>Will it?</em></h4><p>Before you know it, you have some GenericValidatorRepositoryBaseFactoryResolver&lt;T&gt; and loads of supporting classes and interfaces, when all you probably needed was one simple function. </p>
+<p>It’s an exaggeration to make the point, and I’m not saying that abstraction is a bad thing, far from it! But I think it is really important to find a balance that keeps emphasis on the needs of the customer.</p>
+<p>For instance, in our example, it might be that we never end up needing to validate any other type of object. We have delivered the requirement, but at what cost? Costs we might not necessarily think about. It probably took longer than the simple implementation, there will be an extra maintenance overhead due to the more complex code, and increased number of tests that now have to be kept up to date etc.</p>
+<p>As a good friend once told me, <em>‘It may be the nicest code you’ve ever seen, but if it never gets shipped it’s useless!’</em></p>
+<p>Of course, this isn’t an excuse to hack out <em>any</em> old code as quickly as possible. We still have responsibilities as developers to adhere to good coding practices, otherwise we end up going too far the other way, and actually getting slower in the long run.</p>
+<p>The challenge is working out how to meet and deliver the requirement as efficiently as you can, but in a way that can easily be extended in the future - to borrow from Extreme Programming… </p>
+<blockquote>
+<p><em>‘Do the simplest thing that could possibly work.’</em></p>
+</blockquote>
+<p><em>On a side note, there is a really great video from MPJ on his channel funfunfunction about <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=2qYll837a_0&amp;t=5s">the growth stages of a programmer</a> that is relevant here, and well worth a watch!</em></p>
+<h2 id="Minimum-Viable-Product"><a href="#Minimum-Viable-Product" class="headerlink" title="Minimum Viable Product"></a>Minimum Viable Product</h2><p>Or, in other words…</p>
+<blockquote>
+<p><em>Deliver value quickly!</em></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.techopedia.com/definition/27809/minimum-viable-product-mvp">Techopedia</a> explains a minimum viable product (MVP) as…</p>
+<p><em>… the most pared down version of a product that can still be released. An MVP has three key characteristics:</em></p>
+<ul>
+<li><em>It has enough value that people are willing to use it or buy it initially</em> </li>
+<li><em>It demonstrates enough future benefit to retain early adopters</em> </li>
+<li><em>It provides a feedback loop to guide future development</em></li>
+</ul>
+<p>The idea with creating an MVP is not only to speed up the learning process, but to also put emphasis on the needs of the customer.</p>
+<p>As I said, we don’t just see this issue in development, and can apply the same thinking to requirements gathering and design. It’s so easy to get carried away when designing new features, and sometimes lose sight of the actual requirement and immediate customer need.</p>
+<p>Extending the original example…<br><em>‘We need a new feature to dispense salt…’</em><br>‘Ok, no problem, that shouldn’t take too long. But what if it did all condiments?’<br><em>‘Yeah, great idea, but what about people with allergies?’</em><br>‘Ooh good one! Let’s make sure it can do track allergy information. Don’t worry, it’ll save time in the long run!’</p>
+<p>Now your poor client, whose immediate need is just to be able to dispense salt, has to wait months instead of weeks for something they might never need - or want!</p>
+<h2 id="So-what-do-we-do-about-it"><a href="#So-what-do-we-do-about-it" class="headerlink" title="So, what do we do about it?"></a>So, what do we do about it?</h2><p>This is something that can so easily crop up in many parts of a project’s lifecycle, and there is not a simple <em>‘just do this’</em> solution. However, I think this is a very important and apt analogy to have in our minds every time we start something new.</p>
+<p>As a software developer, or member of a project team, your goal should be to deliver value throughout the process. Start small and build iteratively!</p>
+<p>So, every time we sit down to write a piece of code, or design a new feature or a new set of requirements, simply ask yourself…</p>
+<blockquote>
+<p><em>Do they just need the salt?</em></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://alex.mcnair.net/blog/2017/05/19/just-the-salt/" data-id="ckzx48squ000s8hp479mvd9xw" class="article-share-link">Share</a>
+      
+        <a href="http://alex.mcnair.net/blog/2017/05/19/just-the-salt/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/agile/" rel="tag">agile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/customer-centered-design/" rel="tag">customer centered design</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/extreme-programming/" rel="tag">extreme programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/iterative-development/" rel="tag">iterative development</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/minimum-viable-product/" rel="tag">minimum viable product</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/mvp/" rel="tag">mvp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/software-delivery/" rel="tag">software delivery</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-karma-aurelia-ts-systemjs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2017/04/29/karma-aurelia-ts-systemjs/" class="article-date">
+  <time datetime="2017-04-29T10:36:37.000Z" itemprop="datePublished">2017-04-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/blog/images/karma-aurelia-ts-systemjs/toolchain.png" rel="gallery_ckzx48squ000u8hp430qjgh1k">
+        <img src="/blog/images/karma-aurelia-ts-systemjs/toolchain.png" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2017/04/29/karma-aurelia-ts-systemjs/">Setting up Karma with Aurelia, Typescript &amp; SystemJS</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I’m relatively new to setting up unit testing for a javascript project, so when I set out to start adding it to an existing project I obviously turned straight to google.</p>
+<p>After a bit of searching I settled on using Karma, Mocha and Chai.</p>
+<p>As you’d expect, I found loads of information about unit testing javascript and typescript, and how to use mocha and karma etc, but struggled to get it to work with my project configuration.</p>
+<p>I was using a combination of Karma, Mocha and Chai, Typescript, SystemJS and Aurelia, and I struggled to find much information about this specific setup.</p>
+<p>I persevered and finally managed to get it to work, so wanted to write down what I did for anyone else who finds themselves in the same boat.</p>
+<h2 id="Aurelia-Skeleton-Project"><a href="#Aurelia-Skeleton-Project" class="headerlink" title="Aurelia Skeleton Project"></a>Aurelia Skeleton Project</h2><p>I’m starting with a basic Aurelia project (using Typescript and SystemJS) that I created quite quickly from scratch.  You can see how I did that here… <a target="_blank" rel="noopener" href="https://amcn41r.github.io/blog/2017/02/14/au-ts-jspm-skeleton/">Creating an Aurelia app from scratch using typescript &amp; jspm</a>.</p>
+<p>Or, you can grab the source code from <a target="_blank" rel="noopener" href="https://github.com/AMCN41R/blog-repos/tree/master/au-ts-jspm-skeleton">here</a>.</p>
+<h2 id="Setting-up"><a href="#Setting-up" class="headerlink" title="Setting up"></a>Setting up</h2><h3 id="Dependencies"><a href="#Dependencies" class="headerlink" title="Dependencies"></a>Dependencies</h3><p>First, we install the test libraries we want to use using npm, saving them as development dependencies…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev karma mocha chai</span><br></pre></td></tr></tbody></table></figure>
+
+<p>some useful karma plugins…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -- save-dev karma-systemjs karma-mocha karma-chai karma-phantomjs-launcher karma-mocha-reporter</span><br></pre></td></tr></tbody></table></figure>
+
+<p>the relevant type definitions…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @types/karma @types/mocha @types/chai</span><br></pre></td></tr></tbody></table></figure>
+
+<p>and install chai with jspm as a development dependency (to make it easier for SystemJS to load it when running the tests)…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jspm install --dev chai</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Karma-Configuration"><a href="#Karma-Configuration" class="headerlink" title="Karma Configuration"></a>Karma Configuration</h3><p>Next, create a new karma config file by running <code>karma init</code>.</p>
+<p>Use the default settings <strong>EXCEPT</strong> the following…</p>
+<p><em>Which testing framework do you want to use ?</em> - <strong>Mocha</strong><br><em>Do you want to capture any browsers automatically ?</em> - <strong>PhantomJS</strong></p>
+<p>Now that we have a <code>karma.conf.js</code> in the project root, we need to add configuration for SystemJS, and tweak a couple of other options.</p>
+<p>Open the <code>karma.conf.js</code> file and update the following…</p>
+<ul>
+<li>Add ‘systemjs’ as the first item in the frameworks array…<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frameworks: ['systemjs', 'mocha' ]</span><br></pre></td></tr></tbody></table></figure></li>
+<li>Set the files array to the following…<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">files: [</span><br><span class="line">    'test/setup.ts',</span><br><span class="line">    { 'pattern': 'test/*.ts' },</span><br><span class="line">    { 'pattern': 'test/**/*.ts' }</span><br><span class="line">],</span><br></pre></td></tr></tbody></table></figure></li>
+<li>Change the reporter to use he mocha reporter…<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reporters: ['mocha'],</span><br></pre></td></tr></tbody></table></figure></li>
+<li>Add the following SystemJS configuration…<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">systemjs: {</span><br><span class="line">    configFile: 'config.js',</span><br><span class="line">    config: {</span><br><span class="line">        paths: {</span><br><span class="line">            '*': '*',</span><br><span class="line">            'src/*': 'src/*',</span><br><span class="line">            'typescript': 'node_modules/typescript/lib/typescript.js',</span><br><span class="line">            'systemjs': 'node_modules/systemjs/dist/system.js',</span><br><span class="line">            'system-polyfills': 'node_modules/systemjs/dist/system-polyfills.js',</span><br><span class="line">            'es6-module-loader': 'node_modules/es6-module-loader/dist/es6-module-loader.js'</span><br><span class="line">        },</span><br><span class="line">        packages: {</span><br><span class="line">            'test': {</span><br><span class="line">                defaultExtension: 'ts'</span><br><span class="line">            },</span><br><span class="line">            'src': {</span><br><span class="line">                defaultExtension: 'ts'</span><br><span class="line">            }</span><br><span class="line">        },</span><br><span class="line">        transpiler: 'typescript',</span><br><span class="line">    },</span><br><span class="line">    serveFiles: [</span><br><span class="line">        'src/**/*.*',</span><br><span class="line">        'jspm_packages/**/*.js',</span><br><span class="line">        'jspm_packages/**/*.json'</span><br><span class="line">    ]</span><br><span class="line">},</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h3 id="calc-ts"><a href="#calc-ts" class="headerlink" title="calc.ts"></a>calc.ts</h3><p>Let’s add a simple class that we can write tests for.</p>
+<p>Create <code>calc.ts</code> in the <code>src</code> folder and add the following…</p>
+<figure class="highlight typescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">Calc</span> {</span><br><span class="line">    <span class="title function_">add</span>(<span class="params">a: <span class="built_in">number</span>, b: <span class="built_in">number</span></span>){</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Writing-Some-Tests"><a href="#Writing-Some-Tests" class="headerlink" title="Writing Some Tests"></a>Writing Some Tests</h2><p>We will add all our test files inside a folder called ‘test’, so create this folder in the project root.</p>
+<h3 id="setup-ts"><a href="#setup-ts" class="headerlink" title="setup.ts"></a>setup.ts</h3><p>Add a file inside the ‘test’ folder called <code>setup.ts</code>.</p>
+<p>The <code>setup.ts</code> file is used to load the aurelia polyfills and browser abstraction layer for our tests…</p>
+<figure class="highlight typescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"aurelia-polyfills"</span>;</span><br><span class="line"><span class="keyword">import</span> {initialize} <span class="keyword">from</span> <span class="string">"aurelia-pal-browser"</span>;</span><br><span class="line"><span class="title function_">initialize</span>();</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="calc-spec-ts"><a href="#calc-spec-ts" class="headerlink" title="calc.spec.ts"></a>calc.spec.ts</h3><p>Now we can write a simple test for the calculator class.</p>
+<p>Add a file called <code>calc.spec.ts</code> into the ‘test’ folder and add the following code…</p>
+<figure class="highlight typescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> {expect} <span class="keyword">from</span> <span class="string">"chai"</span>;</span><br><span class="line"><span class="keyword">import</span> {<span class="title class_">Calc</span>} <span class="keyword">from</span> <span class="string">"../src/calc"</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">describe</span>(<span class="string">"Calc tests"</span>, <span class="function">() =&gt;</span> {</span><br><span class="line">    <span class="title function_">describe</span>(<span class="string">"Add"</span>, <span class="function">() =&gt;</span> {</span><br><span class="line">        <span class="title function_">it</span>(<span class="string">"passing 2 positive numbers returns the expected result"</span>, <span class="function">() =&gt;</span> {</span><br><span class="line">            <span class="comment">// arrange</span></span><br><span class="line">            <span class="keyword">const</span> sut = <span class="keyword">new</span> <span class="title class_">Calc</span>();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// act</span></span><br><span class="line">            <span class="keyword">const</span> result = sut.<span class="title function_">add</span>(<span class="number">2</span>,<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// assert</span></span><br><span class="line">            <span class="title function_">expect</span>(result).<span class="property">to</span>.<span class="title function_">equal</span>(<span class="number">7</span>);</span><br><span class="line">        });</span><br><span class="line">        <span class="title function_">it</span>(<span class="string">"passing 2 negative numbers returns the expected result"</span>, <span class="function">() =&gt;</span> {</span><br><span class="line">            <span class="comment">// arrange</span></span><br><span class="line">            <span class="keyword">const</span> sut = <span class="keyword">new</span> <span class="title class_">Calc</span>();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// act</span></span><br><span class="line">            <span class="keyword">const</span> result = sut.<span class="title function_">add</span>(-<span class="number">2</span>,-<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// assert</span></span><br><span class="line">            <span class="title function_">expect</span>(result).<span class="property">to</span>.<span class="title function_">equal</span>(-<span class="number">7</span>);</span><br><span class="line">        });</span><br><span class="line">    });</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Testing-testing"><a href="#Testing-testing" class="headerlink" title="Testing, testing"></a>Testing, testing</h2><p>All that’s left to do is run the tests.</p>
+<p>You can do this from the command line with…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">karma start</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="/blog/blog/images/karma-aurelia-ts-systemjs/karma.png" alt="karma test results"></p>
+<h2 id="And-that’s-it"><a href="#And-that’s-it" class="headerlink" title="And that’s it!"></a>And that’s it!</h2><p>You can find the finished source code <a target="_blank" rel="noopener" href="https://github.com/AMCN41R/blog-repos/tree/master/karma-aurelia-ts-systemjs">here</a>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://alex.mcnair.net/blog/2017/04/29/karma-aurelia-ts-systemjs/" data-id="ckzx48squ000u8hp430qjgh1k" class="article-share-link">Share</a>
+      
+        <a href="http://alex.mcnair.net/blog/2017/04/29/karma-aurelia-ts-systemjs/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/aurelia/" rel="tag">aurelia</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/chai/" rel="tag">chai</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/jspm/" rel="tag">jspm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/karma/" rel="tag">karma</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/mocha/" rel="tag">mocha</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/systemjs/" rel="tag">systemjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/testing/" rel="tag">testing</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-au-ts-jspm-skeleton" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2017/02/14/au-ts-jspm-skeleton/" class="article-date">
+  <time datetime="2017-02-14T20:48:41.000Z" itemprop="datePublished">2017-02-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2017/02/14/au-ts-jspm-skeleton/">Creating an Aurelia app from scratch using typescript &amp; jspm</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>There are a number of ways to create a new Aurelia app (the CLI, the skeleton projects etc), and plenty of demos on how to do it.  Having been through this process, I was keen to create my own skeleton application, specifically using typescript and jspm/systemjs, to help embed the things I’d learned.  Here’s what I did…</p>
+<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>Before getting started, make sure you have node and npm installed, and the following packages installed globally…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g typescript</span><br><span class="line">npm install -g jspm</span><br><span class="line">npm install -g gulp-cli</span><br></pre></td></tr></tbody></table></figure>
+
+<p>I also use lite-server to host apps for testing, you can install that globally too…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g lite-server</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Starting-with-an-empty-folder…"><a href="#Starting-with-an-empty-folder…" class="headerlink" title="Starting with an empty folder…"></a>Starting with an empty folder…</h2><p>We are going to use npm to manage development dependencies, and jspm to manage the the libraries our finished app will use.</p>
+<h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><p>Create a new npm project with the following command and accept the default settings…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Then we install our development dependencies…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev typescript jspm lite-server gulp gulp-typescript @types/es6-shim</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="jspm"><a href="#jspm" class="headerlink" title="jspm"></a>jspm</h3><p>After that, create a new jspm project with…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jspm init</span><br></pre></td></tr></tbody></table></figure>
+<p>Accept all the defaults <strong>EXCEPT</strong> for <em>Which ES6 transpiler would you like to use, Babel, TypeScript or Traceur?</em> - make sure to choose TypeScript.</p>
+<p>Then we can install the libraries we want to use to build our app…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jspm install aurelia-framework aurelia-bootstrapper aurelia-pal-browser aurelia-polyfills</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="aurelia-typings"><a href="#aurelia-typings" class="headerlink" title="aurelia typings"></a>aurelia typings</h3><p>At the time of writing (to the best of my knowledge), there is an issue with the typescript typings resolution for libraries that provide their own types (rather than through npm install @types/..) that you install via jspm. Aurelia is one such library - the typescript compiler cannot find the Aurelia type definitions if you install aurelia with jspm.<br><a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/39767330/how-to-properly-get-aurelias-typescript-type-definition-files-d-ts-after-ts">This</a> stack overfow question has some more information.</p>
+<p>To get round this, we can also install the aurelia libraries as development dependencies with npm…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev aurelia-framework aurelia-bootstrapper aurelia-pal-browser aurelia-polyfills</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>Note</strong>: This is only so that the typescript compiler can find the aurelia type definitions, and won’t actually be used from the node_modules folder.</p>
+<p>We’ve now got everything we need to build our app. We should have a config.js file and jspm_packages alongside our package.json and node_modules folder…</p>
+<p><img src="/blog/blog/images/au-ts-jspm-skeleton/setup.PNG" alt="setup complete"></p>
+<h2 id="Creating-the-app…"><a href="#Creating-the-app…" class="headerlink" title="Creating the app…"></a>Creating the app…</h2><p>All of the code we write, will go into a folder caled <em>src</em>. We are going to create a class to bootstrap aurelia is the standard way, and a simple page to illustrate data binding.</p>
+<p>Create the <em>src</em> folder in the project root directory, and create 3 new files within it..</p>
+<ul>
+<li>main.ts </li>
+<li>app.ts </li>
+<li>app.html</li>
+</ul>
+<p><img src="/blog/blog/images/au-ts-jspm-skeleton/src.PNG" alt="creating source files"></p>
+<h3 id="main-ts"><a href="#main-ts" class="headerlink" title="main.ts"></a>main.ts</h3><figure class="highlight typescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> { <span class="title class_">Aurelia</span> } <span class="keyword">from</span> <span class="string">"aurelia-framework"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">configure</span>(<span class="params">aurelia: Aurelia</span>) {</span><br><span class="line"></span><br><span class="line">    aurelia</span><br><span class="line">        .<span class="property">use</span></span><br><span class="line">        .<span class="title function_">standardConfiguration</span>()</span><br><span class="line">        .<span class="title function_">developmentLogging</span>();</span><br><span class="line"></span><br><span class="line">    aurelia.<span class="title function_">start</span>().<span class="title function_">then</span>(<span class="function"><span class="params">a</span> =&gt;</span> a.<span class="title function_">setRoot</span>());</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="app-ts"><a href="#app-ts" class="headerlink" title="app.ts"></a>app.ts</h3><figure class="highlight typescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">App</span> {</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>) {</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">welcomeMessage</span> = <span class="string">"Welcome to our Aurelia application"</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="attr">welcomeMessage</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="attr">inputText</span>: <span class="built_in">string</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="app-html"><a href="#app-html" class="headerlink" title="app.html"></a>app.html</h3><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>${welcomeMessage}<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">value.bind</span>=<span class="string">"inputText"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        ${inputText}</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Building-the-output…"><a href="#Building-the-output…" class="headerlink" title="Building the output…"></a>Building the output…</h2><p>We will serve files from a directory called <em>dist</em>. This folder will contain the result of building the code we have written in the <em>src</em> folder. To do this, we wil use <strong>gulp</strong>.</p>
+<h3 id="tsconfig-json"><a href="#tsconfig-json" class="headerlink" title="tsconfig.json"></a>tsconfig.json</h3><p>The first thing we need to do is turn the typescript files we have written into javascript files. We use the typescript compiler to do this, with some options specific to our project - these options go into a file called <em>tsconfig.json</em>.</p>
+<p>Create the tsconfig.json file in the project root and add the following…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    "compilerOptions": {</span><br><span class="line">        "module": "amd",</span><br><span class="line">        "moduleResolution": "node",</span><br><span class="line">        "experimentalDecorators": true,</span><br><span class="line">        "emitDecoratorMetadata": true,</span><br><span class="line">        "sourceMap": true,</span><br><span class="line">        "target": "es5",</span><br><span class="line">        "outDir": "dist/"</span><br><span class="line">    },</span><br><span class="line">    "include": [</span><br><span class="line">        "./src/**/*.ts"</span><br><span class="line">    ]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="update-config-js"><a href="#update-config-js" class="headerlink" title="update config.js"></a>update config.js</h3><p>We can also update the config.js file to tell systemjs to always start in the dist/ folder when looking for the modules we’ve written…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">System.config({</span><br><span class="line">  baseURL: "/",</span><br><span class="line">  defaultJSExtensions: true,</span><br><span class="line">  transpiler: "typescript",</span><br><span class="line">  paths: {</span><br><span class="line">    "*": "dist/*", // &lt;------------------------ ADD THIS LINE</span><br><span class="line">    "github:*": "jspm_packages/github/*",</span><br><span class="line">    "npm:*": "jspm_packages/npm/*"</span><br><span class="line">  },</span><br><span class="line">  map: {</span><br><span class="line">      // rest of file</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="gulp"><a href="#gulp" class="headerlink" title="gulp"></a>gulp</h3><p>Add a new file, gulpfile.js, in the project root and add the following…</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">"gulp"</span>);</span><br><span class="line"><span class="keyword">const</span> ts = <span class="built_in">require</span>(<span class="string">"gulp-typescript"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> tsProject = ts.<span class="title function_">createProject</span>(<span class="string">"tsconfig.json"</span>);</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">"build:ts"</span>, <span class="function">() =&gt;</span> {</span><br><span class="line">    tsProject</span><br><span class="line">        .<span class="title function_">src</span>()</span><br><span class="line">        .<span class="title function_">pipe</span>(<span class="title function_">tsProject</span>())</span><br><span class="line">        .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">"dist/"</span>));</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">"build:html"</span>, <span class="function">() =&gt;</span> {</span><br><span class="line">    gulp</span><br><span class="line">        .<span class="title function_">src</span>(<span class="string">"src/**/*.html"</span>)</span><br><span class="line">        .<span class="title function_">pipe</span>(gulp.<span class="title function_">dest</span>(<span class="string">"dist/"</span>));</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">gulp.<span class="title function_">task</span>(<span class="string">"build"</span>, [<span class="string">"build:ts"</span>, <span class="string">"build:html"</span>]);</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Now, from the command line, run <code>gulp build</code> - this will create the dist/ folder with our html templates and transpiled typescript files…</p>
+<p><img src="/blog/blog/images/au-ts-jspm-skeleton/build.PNG" alt="the build output"></p>
+<h2 id="Serving-up…"><a href="#Serving-up…" class="headerlink" title="Serving up…"></a>Serving up…</h2><p>All that’s left is to create the index.html then serve what we’ve done locally using lite-server.</p>
+<h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><p>Create the following index.html in the project root…</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Aurelia App<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jspm_packages/system.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"config.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="title class_">System</span>.<span class="title function_">import</span>(<span class="string">"aurelia-bootstrapper"</span>);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">aurelia-app</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="lite-server-configuration"><a href="#lite-server-configuration" class="headerlink" title="lite-server configuration"></a>lite-server configuration</h3><p>Create a file caled bs-config.json in the project root with the following options…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    "port": 3000,</span><br><span class="line">    "files": ["./**/*.{html,htm,css,js}"],</span><br><span class="line">    "server": {</span><br><span class="line">        "baseDir": "./"</span><br><span class="line">    },</span><br><span class="line">    "exclude":[</span><br><span class="line">        "node_modules/",</span><br><span class="line">        "jspm_packages/"</span><br><span class="line">    ]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Run-it…"><a href="#Run-it…" class="headerlink" title="Run it…"></a>Run it…</h3><p>Then start the application by running the following command…</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lite-server</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="And-the-crowd-goes-wild"><a href="#And-the-crowd-goes-wild" class="headerlink" title="And the crowd goes wild!"></a>And the crowd goes wild!</h2><p>That’s it! We made a basic aurelia app using jspm and systemjs, written in typescript.</p>
+<p>You can find he source code <a target="_blank" rel="noopener" href="https://github.com/AMCN41R/blog-repos/tree/master/au-ts-jspm-skeleton">here</a>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://alex.mcnair.net/blog/2017/02/14/au-ts-jspm-skeleton/" data-id="ckzx48sqs000n8hp42u97735c" class="article-share-link">Share</a>
+      
+        <a href="http://alex.mcnair.net/blog/2017/02/14/au-ts-jspm-skeleton/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/aurelia/" rel="tag">aurelia</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/jspm/" rel="tag">jspm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/setup/" rel="tag">setup</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/skeleton/" rel="tag">skeleton</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/systemjs/" rel="tag">systemjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/typescript/" rel="tag">typescript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Alex McNair<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+  <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+  <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+  <a href="https://github.com/amcn41r" target="_blank" class="mobile-nav-link"> GitHub</a>
+  <a href="http://www.alexmcnair.net/" target="_blank" class="mobile-nav-link">alexmcnair.net</a>
+</nav>
+
+    
+<script>
+  var disqus_shortname = 'alexmcnair';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
